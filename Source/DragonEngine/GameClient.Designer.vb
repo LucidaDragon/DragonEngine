@@ -22,8 +22,14 @@ Partial Class GameClient
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameClient))
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 16
         '
         'GameClient
         '
@@ -40,4 +46,6 @@ Partial Class GameClient
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents Timer1 As Timer
 End Class
