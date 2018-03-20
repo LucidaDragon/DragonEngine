@@ -54,6 +54,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -82,11 +83,18 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameObject.vb" />
-    <Compile Include="ImageEditor.Designer.vb">
-      <DependentUpon>ImageEditor.vb</DependentUpon>
+    <Compile Include="GameClient.Designer.vb">
+      <DependentUpon>GameClient.vb</DependentUpon>
     </Compile>
-    <Compile Include="ImageEditor.vb">
+    <Compile Include="GameClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameObject.vb" />
+    <Compile Include="GamePart.vb" />
+    <Compile Include="SimpleImageEditor.Designer.vb">
+      <DependentUpon>SimpleImageEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleImageEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MapZone.vb" />
@@ -114,8 +122,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageEditor.resx">
-      <DependentUpon>ImageEditor.vb</DependentUpon>
+    <EmbeddedResource Include="GameClient.resx">
+      <DependentUpon>GameClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleImageEditor.resx">
+      <DependentUpon>SimpleImageEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

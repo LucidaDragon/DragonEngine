@@ -31,7 +31,7 @@ Partial Class Form1
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.ImageEditor1 = New DragonEngine.ImageEditor()
+        Me.ImageEditor1 = New DragonEngine.SimpleImageEditor()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -180,5 +180,5 @@ Partial Class Form1
     Friend WithEvents TreeView1 As TreeView
     Friend WithEvents PropertyGrid1 As PropertyGrid
     Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents ImageEditor1 As ImageEditor
+    Friend WithEvents ImageEditor1 As SimpleImageEditor
 End Class

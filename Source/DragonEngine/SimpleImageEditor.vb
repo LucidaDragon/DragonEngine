@@ -1,4 +1,4 @@
-﻿Public Class ImageEditor
+﻿Public Class SimpleImageEditor
     Public Property PaintColor As Color
     Public Property Image As Bitmap
         Get

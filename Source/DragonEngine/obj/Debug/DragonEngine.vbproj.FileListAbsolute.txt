@@ -15,10 +15,10 @@ C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debu
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.pdb
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.xml
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.Form1.resources
-C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.ImageEditor.resources
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.Resources.resources
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbproj.GenerateResource.Cache
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbproj.CoreCompileInputs.cache
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.exe
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.xml
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.pdb
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.SimpleImageEditor.resources
