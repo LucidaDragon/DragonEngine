@@ -26,7 +26,6 @@
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim startTick As DateTime = DateTime.Now
 
-        Dim endTick As DateTime = DateTime.Now
-        Timer1.Interval = 1 / (endTick - startTick).TotalMilliseconds
+        Timer1.Interval = 1 / (DateTime.Now - startTick).TotalMilliseconds
     End Sub
 End Class

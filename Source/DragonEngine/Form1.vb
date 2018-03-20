@@ -6,7 +6,9 @@
 
     Private Sub PropertyGrid1_SelectedObjectsChanged(sender As Object, e As EventArgs) Handles PropertyGrid1.SelectedObjectsChanged
         Try
-            Dim gObj As GameObject = PropertyGrid1.SelectedObject
+            If TryCast(PropertyGrid1.SelectedObject, ScriptObject) IsNot Nothing Then
+                TextBox1.Text = TryCast(PropertyGrid1.SelectedObject, ScriptObject).Script
+            End If
         Catch
         End Try
     End Sub
