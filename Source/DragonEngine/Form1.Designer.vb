@@ -23,6 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
@@ -87,7 +88,7 @@ Partial Class Form1
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer3)
         Me.SplitContainer2.Size = New System.Drawing.Size(1216, 468)
-        Me.SplitContainer2.SplitterDistance = 774
+        Me.SplitContainer2.SplitterDistance = 634
         Me.SplitContainer2.TabIndex = 0
         '
         'SplitContainer3
@@ -104,8 +105,8 @@ Partial Class Form1
         'SplitContainer3.Panel2
         '
         Me.SplitContainer3.Panel2.Controls.Add(Me.PropertyGrid1)
-        Me.SplitContainer3.Size = New System.Drawing.Size(438, 468)
-        Me.SplitContainer3.SplitterDistance = 235
+        Me.SplitContainer3.Size = New System.Drawing.Size(578, 468)
+        Me.SplitContainer3.SplitterDistance = 130
         Me.SplitContainer3.TabIndex = 0
         '
         'TreeView1
@@ -113,7 +114,7 @@ Partial Class Form1
         Me.TreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TreeView1.Location = New System.Drawing.Point(0, 0)
         Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(438, 235)
+        Me.TreeView1.Size = New System.Drawing.Size(578, 130)
         Me.TreeView1.TabIndex = 0
         '
         'PropertyGrid1
@@ -121,7 +122,7 @@ Partial Class Form1
         Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PropertyGrid1.Location = New System.Drawing.Point(0, 0)
         Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(438, 229)
+        Me.PropertyGrid1.Size = New System.Drawing.Size(578, 334)
         Me.PropertyGrid1.TabIndex = 0
         '
         'TextBox1
@@ -136,7 +137,7 @@ Partial Class Form1
         'ImageEditor1
         '
         Me.ImageEditor1.Image = Nothing
-        Me.ImageEditor1.Location = New System.Drawing.Point(214, 52)
+        Me.ImageEditor1.Location = New System.Drawing.Point(0, 0)
         Me.ImageEditor1.Name = "ImageEditor1"
         Me.ImageEditor1.PaintColor = System.Drawing.Color.Empty
         Me.ImageEditor1.Scale = 1.0R
@@ -150,6 +151,7 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(1216, 762)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dragon Engine"
