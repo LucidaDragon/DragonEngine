@@ -19,13 +19,39 @@
         End Try
     End Sub
 
-    Private Sub GameClient_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public GameObjects As New List(Of GameObject)
+    Public DrawCalls As New List(Of RenderedObject)
 
-    End Sub
+    Private DeltaMiliseconds As Integer = 0
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Invalidate()
+        Timer1.Interval = DeltaMiliseconds + 1
+    End Sub
+
+    Private Sub GameClient_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         Dim startTick As DateTime = DateTime.Now
 
-        Timer1.Interval = 1 / (DateTime.Now - startTick).TotalMilliseconds
+        For Each obj In GameObjects
+            obj.Tick(DeltaMiliseconds / 1000)
+        Next
+
+        For Each drawCall In DrawCalls
+            e.Graphics.DrawImage(drawCall.Sprite.Image, drawCall.WorldPosition)
+        Next
+
+        DeltaMiliseconds = (DateTime.Now - startTick).TotalMilliseconds
+    End Sub
+
+    Private Sub GameClient_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        Timer1.Start()
+    End Sub
+
+    Private Sub GameClient_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        KeyManager.SetKeyState(e.KeyCode, True)
+    End Sub
+
+    Private Sub GameClient_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
+        KeyManager.SetKeyState(e.KeyCode, False)
     End Sub
 End Class

@@ -76,6 +76,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Force.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +92,9 @@
     </Compile>
     <Compile Include="GameObject.vb" />
     <Compile Include="GamePart.vb" />
+    <Compile Include="KeyManager.vb" />
+    <Compile Include="PhysicsObject.vb" />
+    <Compile Include="RenderedObject.vb" />
     <Compile Include="SimpleImageEditor.Designer.vb">
       <DependentUpon>SimpleImageEditor.vb</DependentUpon>
     </Compile>
@@ -149,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DragonIcon.ico" />
+    <None Include="Resources\DragonIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

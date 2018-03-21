@@ -82,6 +82,7 @@ Partial Class Form1
         'SplitContainer2.Panel1
         '
         Me.SplitContainer2.Panel1.AutoScroll = True
+        Me.SplitContainer2.Panel1.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.SplitContainer2.Panel1.Controls.Add(Me.ImageEditor1)
         '
         'SplitContainer2.Panel2
@@ -136,6 +137,7 @@ Partial Class Form1
         '
         'ImageEditor1
         '
+        Me.ImageEditor1.BackColor = System.Drawing.SystemColors.Control
         Me.ImageEditor1.Image = Nothing
         Me.ImageEditor1.Location = New System.Drawing.Point(0, 0)
         Me.ImageEditor1.Name = "ImageEditor1"

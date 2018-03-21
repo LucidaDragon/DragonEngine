@@ -1,16 +1,12 @@
 ﻿Public Class GameObject
     Public Property Name As String
-    Public Property Data As New List(Of Data)
-End Class
+    Public Property SpecialData As New List(Of Data)
 
-Public Class Data
-    Public Property Name As String
-    Public Property Value As String
-End Class
+    Public Overridable Sub Tick(deltaSeconds As Double)
+    End Sub
 
-Public Enum ObjectType
-    Unknown = 0
-    Script = 1
-    Sprite = 2
-    TileMap = 3
-End Enum
+    Public Class Data
+        Public Property Name As String
+        Public Property Value As String
+    End Class
+End Class
