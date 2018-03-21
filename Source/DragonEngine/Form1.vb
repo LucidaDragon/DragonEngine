@@ -22,7 +22,7 @@
         GameObjects.Add(New ScriptObject("Script_Obj"))
         GameObjects.Add(New PhysicsObject("Phys_Obj"))
         GameObjects.Add(New SpriteObject("Sprite_Obj"))
-        TreeView1.Invalidate()
+        UpdateTreeView()
     End Sub
 
     Private Sub PropertyGrid1_SelectedObjectsChanged(sender As Object, e As EventArgs) Handles PropertyGrid1.SelectedObjectsChanged
