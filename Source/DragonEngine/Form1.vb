@@ -22,6 +22,7 @@
         GameObjects.Add(New ScriptObject("Script_Obj"))
         GameObjects.Add(New PhysicsObject("Phys_Obj"))
         GameObjects.Add(New SpriteObject("Sprite_Obj"))
+        GameObjects.Add(New TileMapObject("TileMap_Obj"))
         UpdateTreeView()
     End Sub
 
@@ -63,6 +64,8 @@
                 node.ImageKey = "gamepad.png"
             ElseIf TryCast(obj, SpriteObject) IsNot Nothing Then
                 node.ImageKey = "movie.png"
+            ElseIf TryCast(obj, TileMapObject) IsNot Nothing Then
+                node.ImageKey = "exit.png"
             End If
             node.SelectedImageKey = node.ImageKey
             node.Tag = obj

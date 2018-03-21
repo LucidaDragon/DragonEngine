@@ -28,12 +28,12 @@ Partial Class Form1
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.ImageEditor1 = New DragonEngine.SimpleImageEditor()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.ImageEditor1 = New DragonEngine.SimpleImageEditor()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -94,17 +94,6 @@ Partial Class Form1
         Me.SplitContainer2.SplitterDistance = 634
         Me.SplitContainer2.TabIndex = 0
         '
-        'ImageEditor1
-        '
-        Me.ImageEditor1.BackColor = System.Drawing.SystemColors.Control
-        Me.ImageEditor1.Image = Nothing
-        Me.ImageEditor1.Location = New System.Drawing.Point(0, 0)
-        Me.ImageEditor1.Name = "ImageEditor1"
-        Me.ImageEditor1.PaintColor = System.Drawing.Color.Empty
-        Me.ImageEditor1.Scale = 1.0R
-        Me.ImageEditor1.Size = New System.Drawing.Size(402, 364)
-        Me.ImageEditor1.TabIndex = 0
-        '
         'SplitContainer3
         '
         Me.SplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill
@@ -151,6 +140,7 @@ Partial Class Form1
         Me.ImageList1.Images.SetKeyName(4, "save.png")
         Me.ImageList1.Images.SetKeyName(5, "movie.png")
         Me.ImageList1.Images.SetKeyName(6, "open.png")
+        Me.ImageList1.Images.SetKeyName(7, "exit.png")
         '
         'PropertyGrid1
         '
@@ -168,6 +158,18 @@ Partial Class Form1
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(1216, 265)
         Me.TextBox1.TabIndex = 0
+        '
+        'ImageEditor1
+        '
+        Me.ImageEditor1.BackColor = System.Drawing.SystemColors.Control
+        Me.ImageEditor1.Image = Nothing
+        Me.ImageEditor1.Location = New System.Drawing.Point(0, 0)
+        Me.ImageEditor1.Name = "ImageEditor1"
+        Me.ImageEditor1.PaintColor = System.Drawing.Color.Empty
+        Me.ImageEditor1.Scale = 1.0R
+        Me.ImageEditor1.Size = New System.Drawing.Size(402, 364)
+        Me.ImageEditor1.TabIndex = 0
+        Me.ImageEditor1.Visible = False
         '
         'Form1
         '
