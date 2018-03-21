@@ -23,12 +23,14 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Game")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ImageEditor1 = New DragonEngine.SimpleImageEditor()
@@ -113,10 +115,30 @@ Partial Class Form1
         'TreeView1
         '
         Me.TreeView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TreeView1.HotTracking = True
+        Me.TreeView1.ImageIndex = 0
+        Me.TreeView1.ImageList = Me.ImageList1
         Me.TreeView1.Location = New System.Drawing.Point(0, 0)
         Me.TreeView1.Name = "TreeView1"
+        TreeNode1.ImageKey = "home.png"
+        TreeNode1.Name = "Root"
+        TreeNode1.Text = "Game"
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1})
+        Me.TreeView1.SelectedImageIndex = 0
         Me.TreeView1.Size = New System.Drawing.Size(578, 130)
         Me.TreeView1.TabIndex = 0
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "DragonIcon.png")
+        Me.ImageList1.Images.SetKeyName(1, "home.png")
+        Me.ImageList1.Images.SetKeyName(2, "gamepad.png")
+        Me.ImageList1.Images.SetKeyName(3, "gear.png")
+        Me.ImageList1.Images.SetKeyName(4, "save.png")
+        Me.ImageList1.Images.SetKeyName(5, "movie.png")
+        Me.ImageList1.Images.SetKeyName(6, "open.png")
         '
         'PropertyGrid1
         '
@@ -183,4 +205,5 @@ Partial Class Form1
     Friend WithEvents PropertyGrid1 As PropertyGrid
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents ImageEditor1 As SimpleImageEditor
+    Friend WithEvents ImageList1 As ImageList
 End Class
