@@ -91,7 +91,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GameObject.vb" />
+    <Compile Include="GameObjectLookup.vb" />
     <Compile Include="GamePart.vb" />
+    <Compile Include="GameProperties.vb" />
     <Compile Include="KeyManager.vb" />
     <Compile Include="PhysicsObject.vb" />
     <Compile Include="RenderedObject.vb" />
@@ -119,6 +121,7 @@
     </Compile>
     <Compile Include="Rect.vb" />
     <Compile Include="ScriptObject.vb" />
+    <Compile Include="SpecialTreeNode.vb" />
     <Compile Include="SpriteObject.vb" />
     <Compile Include="TileMapObject.vb" />
   </ItemGroup>

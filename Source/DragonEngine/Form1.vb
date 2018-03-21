@@ -1,16 +1,34 @@
 ﻿Public Class Form1
-    Public GameObjects As New List(Of GameObject)
+    Public Property GameObjects As List(Of GameObject)
+        Get
+            If Not MemoryToTree Then
+                MemoryToTree = True
+                UpdateTreeView()
+                MemoryToTree = False
+            End If
+            Return ObjectMemory
+        End Get
+        Set(value As List(Of GameObject))
+            ObjectMemory = value
+        End Set
+    End Property
+    Private ObjectMemory As New List(Of GameObject)
+    Private MemoryToTree As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GameObjects.Add(New ScriptObject)
-        GameObjects.Add(New PhysicsObject)
-        GameObjects.Add(New SpriteObject)
-        GameObjects.Add(New RenderedObject)
+        GameObjectLookup.SetObjectList(ObjectMemory)
+        TreeView1.TopNode.Tag = New GameProperties
+        GameObjects.Add(New RenderedObject("Render_Obj"))
+        GameObjects.Add(New ScriptObject("Script_Obj"))
+        GameObjects.Add(New PhysicsObject("Phys_Obj"))
+        GameObjects.Add(New SpriteObject("Sprite_Obj"))
+        TreeView1.Invalidate()
     End Sub
 
     Private Sub PropertyGrid1_SelectedObjectsChanged(sender As Object, e As EventArgs) Handles PropertyGrid1.SelectedObjectsChanged
         Try
             ImageEditor1.Hide()
+            TextBox1.Text = ""
             If TryCast(PropertyGrid1.SelectedObject, ScriptObject) IsNot Nothing Then
                 TextBox1.Text = TryCast(PropertyGrid1.SelectedObject, ScriptObject).Script
             ElseIf TryCast(PropertyGrid1.SelectedObject, SpriteObject) IsNot Nothing Then
@@ -33,10 +51,10 @@
         End If
     End Sub
 
-    Private Sub TreeView1_Paint(sender As Object, e As PaintEventArgs) Handles TreeView1.Paint
-        TreeView1.TopNode.Nodes.Clear()
+    Private Sub UpdateTreeView()
+        TreeView1.Nodes.Item(0).Nodes.Clear()
         For Each obj In GameObjects
-            Dim node As New TreeNode(obj.Name)
+            Dim node As New SpecialTreeNode(obj.Name)
             If TryCast(obj, ScriptObject) IsNot Nothing Then
                 node.ImageKey = "gear.png"
             ElseIf TryCast(obj, PhysicsObject) IsNot Nothing Then
@@ -46,11 +64,9 @@
             ElseIf TryCast(obj, SpriteObject) IsNot Nothing Then
                 node.ImageKey = "movie.png"
             End If
-            TreeView1.TopNode.Nodes.Add(node)
+            node.SelectedImageKey = node.ImageKey
+            node.Tag = obj
+            TreeView1.Nodes.Item(0).Nodes.Add(node)
         Next
-    End Sub
-
-    Private Sub TreeView1_MouseEnter(sender As Object, e As EventArgs) Handles TreeView1.MouseEnter
-        TreeView1.Invalidate()
     End Sub
 End Class

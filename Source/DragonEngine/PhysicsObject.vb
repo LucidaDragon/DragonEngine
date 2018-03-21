@@ -1,6 +1,10 @@
 ﻿Public Class PhysicsObject
     Inherits GameObject
 
+    Sub New(name As String)
+        MyBase.New(name)
+    End Sub
+
     Public Property Position As New Point
     Public Property Velocity As New Point
 

@@ -1,6 +1,10 @@
 ﻿Public Class TileMapObject
     Inherits GameObject
 
+    Sub New(name As String)
+        MyBase.New(name)
+    End Sub
+
     Public TileMap As New List(Of Tuple(Of Point, Integer))
     Public TileMapData As New List(Of Tuple(Of Integer))
     Public Property Zones As New List(Of MapZone)

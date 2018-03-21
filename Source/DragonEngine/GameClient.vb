@@ -37,7 +37,7 @@
         Next
 
         For Each drawCall In DrawCalls
-            e.Graphics.DrawImage(drawCall.Sprite.Image, drawCall.WorldPosition)
+            e.Graphics.DrawImage(drawCall.SelectedSprite.Image, drawCall.WorldPosition)
         Next
 
         DeltaMiliseconds = (DateTime.Now - startTick).TotalMilliseconds
