@@ -76,43 +76,24 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Force.vb" />
+    <Compile Include="Camera.vb" />
+    <Compile Include="DrawCall.vb" />
+    <Compile Include="GameEditor.Designer.vb">
+      <DependentUpon>GameEditor.vb</DependentUpon>
+    </Compile>
     <Compile Include="GameEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameEditor.Designer.vb">
-      <DependentUpon>GameEditor.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="IDataExchange.vb" />
     <Compile Include="GameClient.Designer.vb">
       <DependentUpon>GameClient.vb</DependentUpon>
     </Compile>
     <Compile Include="GameClient.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameObject.vb" />
-    <Compile Include="GameObjectLookup.vb" />
-    <Compile Include="GamePart.vb" />
     <Compile Include="GameProperties.vb" />
+    <Compile Include="ITickable.vb" />
     <Compile Include="KeyManager.vb" />
-    <Compile Include="MapEditor.Designer.vb">
-      <DependentUpon>MapEditor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MapEditor.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MovableImage.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PhysicsObject.vb" />
-    <Compile Include="RenderedObject.vb" />
-    <Compile Include="SimpleImageEditor.Designer.vb">
-      <DependentUpon>SimpleImageEditor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SimpleImageEditor.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MapZone.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -128,24 +109,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Rect.vb" />
-    <Compile Include="ScriptObject.vb" />
-    <Compile Include="SpecialTreeNode.vb" />
-    <Compile Include="SpriteObject.vb" />
-    <Compile Include="TileMapObject.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GameEditor.resx">
-      <DependentUpon>GameEditor.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GameClient.resx">
       <DependentUpon>GameClient.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapEditor.resx">
-      <DependentUpon>MapEditor.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SimpleImageEditor.resx">
-      <DependentUpon>SimpleImageEditor.vb</DependentUpon>
+    <EmbeddedResource Include="GameEditor.resx">
+      <DependentUpon>GameEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
