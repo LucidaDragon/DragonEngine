@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class GameEditor
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,17 +23,18 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Game")
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Game")
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameEditor))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.ImageEditor1 = New DragonEngine.SimpleImageEditor()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.ImageEditor1 = New DragonEngine.SimpleImageEditor()
+        Me.MapEditor1 = New DragonEngine.MapEditor()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -85,6 +86,7 @@ Partial Class Form1
         '
         Me.SplitContainer2.Panel1.AutoScroll = True
         Me.SplitContainer2.Panel1.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.SplitContainer2.Panel1.Controls.Add(Me.MapEditor1)
         Me.SplitContainer2.Panel1.Controls.Add(Me.ImageEditor1)
         '
         'SplitContainer2.Panel2
@@ -93,6 +95,18 @@ Partial Class Form1
         Me.SplitContainer2.Size = New System.Drawing.Size(1216, 468)
         Me.SplitContainer2.SplitterDistance = 634
         Me.SplitContainer2.TabIndex = 0
+        '
+        'ImageEditor1
+        '
+        Me.ImageEditor1.BackColor = System.Drawing.SystemColors.Control
+        Me.ImageEditor1.Image = Nothing
+        Me.ImageEditor1.Location = New System.Drawing.Point(142, 59)
+        Me.ImageEditor1.Name = "ImageEditor1"
+        Me.ImageEditor1.PaintColor = System.Drawing.Color.Empty
+        Me.ImageEditor1.Scale = 1.0R
+        Me.ImageEditor1.Size = New System.Drawing.Size(350, 350)
+        Me.ImageEditor1.TabIndex = 0
+        Me.ImageEditor1.Visible = False
         '
         'SplitContainer3
         '
@@ -120,11 +134,11 @@ Partial Class Form1
         Me.TreeView1.ImageList = Me.ImageList1
         Me.TreeView1.Location = New System.Drawing.Point(0, 0)
         Me.TreeView1.Name = "TreeView1"
-        TreeNode1.ImageKey = "home.png"
-        TreeNode1.Name = "Root"
-        TreeNode1.SelectedImageKey = "home.png"
-        TreeNode1.Text = "Game"
-        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1})
+        TreeNode2.ImageKey = "home.png"
+        TreeNode2.Name = "Root"
+        TreeNode2.SelectedImageKey = "home.png"
+        TreeNode2.Text = "Game"
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2})
         Me.TreeView1.SelectedImageIndex = 0
         Me.TreeView1.Size = New System.Drawing.Size(578, 130)
         Me.TreeView1.TabIndex = 0
@@ -159,17 +173,13 @@ Partial Class Form1
         Me.TextBox1.Size = New System.Drawing.Size(1216, 265)
         Me.TextBox1.TabIndex = 0
         '
-        'ImageEditor1
+        'MapEditor1
         '
-        Me.ImageEditor1.BackColor = System.Drawing.SystemColors.Control
-        Me.ImageEditor1.Image = Nothing
-        Me.ImageEditor1.Location = New System.Drawing.Point(0, 0)
-        Me.ImageEditor1.Name = "ImageEditor1"
-        Me.ImageEditor1.PaintColor = System.Drawing.Color.Empty
-        Me.ImageEditor1.Scale = 1.0R
-        Me.ImageEditor1.Size = New System.Drawing.Size(402, 364)
-        Me.ImageEditor1.TabIndex = 0
-        Me.ImageEditor1.Visible = False
+        Me.MapEditor1.BackColor = System.Drawing.SystemColors.Control
+        Me.MapEditor1.Location = New System.Drawing.Point(3, 31)
+        Me.MapEditor1.Name = "MapEditor1"
+        Me.MapEditor1.Size = New System.Drawing.Size(350, 350)
+        Me.MapEditor1.TabIndex = 1
         '
         'Form1
         '
@@ -209,4 +219,5 @@ Partial Class Form1
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents ImageEditor1 As SimpleImageEditor
     Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents MapEditor1 As MapEditor
 End Class

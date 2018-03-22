@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class GameEditor
     Public Property GameObjects As List(Of GameObject)
         Get
             If Not MemoryToTree Then
@@ -28,15 +28,18 @@
 
     Private Sub PropertyGrid1_SelectedObjectsChanged(sender As Object, e As EventArgs) Handles PropertyGrid1.SelectedObjectsChanged
         Try
+            MapEditor1.Hide()
             ImageEditor1.Hide()
+            ImageEditor1.Sprite = Nothing
             TextBox1.Text = ""
             If TryCast(PropertyGrid1.SelectedObject, ScriptObject) IsNot Nothing Then
                 TextBox1.Text = TryCast(PropertyGrid1.SelectedObject, ScriptObject).Script
             ElseIf TryCast(PropertyGrid1.SelectedObject, SpriteObject) IsNot Nothing Then
-                ImageEditor1.Image = TryCast(PropertyGrid1.SelectedObject, SpriteObject).Image
+                ImageEditor1.Sprite = PropertyGrid1.SelectedObject
                 ImageEditor1.Show()
             ElseIf TryCast(PropertyGrid1.SelectedObject, TileMapObject) IsNot Nothing Then
-
+                MapEditor1.SelectedMap = PropertyGrid1.SelectedObject
+                MapEditor1.Show()
             End If
         Catch
         End Try

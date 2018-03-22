@@ -77,11 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Force.vb" />
-    <Compile Include="Form1.vb">
+    <Compile Include="GameEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="GameEditor.Designer.vb">
+      <DependentUpon>GameEditor.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GameClient.Designer.vb">
@@ -135,8 +135,8 @@
     <Compile Include="TileMapObject.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="GameEditor.resx">
+      <DependentUpon>GameEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameClient.resx">
       <DependentUpon>GameClient.vb</DependentUpon>

@@ -14,7 +14,11 @@
             End If
         End Get
         Set(value As String)
-            SelectedSprite = GameObjectLookup.GetObjectByName(value)
+            Try
+                SelectedSprite = GameObjectLookup.GetObjectByName(value)
+            Catch
+                MsgBox("Sprite '" & value & "' not found.")
+            End Try
         End Set
     End Property
     Public Property SelectedSprite As SpriteObject

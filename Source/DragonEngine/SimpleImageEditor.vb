@@ -1,5 +1,21 @@
 ﻿Public Class SimpleImageEditor
     Public Property PaintColor As Color
+    Public Property Sprite As SpriteObject
+        Get
+            Return CurrentSprite
+        End Get
+        Set(value As SpriteObject)
+            If CurrentSprite IsNot Nothing And CurrentImage IsNot Nothing Then
+                CurrentSprite.Image = CurrentImage
+            End If
+            CurrentSprite = value
+            If value IsNot Nothing Then
+                Image = CurrentSprite.Image.Clone()
+            Else
+                Image = Nothing
+            End If
+        End Set
+    End Property
     Public Property Image As Bitmap
         Get
             Return CurrentImage
@@ -14,6 +30,7 @@
     End Property
     Public Shadows Property Scale As Double = 1
 
+    Private CurrentSprite As SpriteObject
     Private CurrentImage As Bitmap
     Private IsMouseDown As Boolean = False
     Private UndoBuffer As New List(Of Bitmap)
@@ -80,10 +97,12 @@
     End Sub
 
     Private Sub UndoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UndoToolStripMenuItem.Click
-        UndoUpdating = True
-        Image = UndoBuffer.Last
-        UndoBuffer.RemoveAt(UndoBuffer.Count - 1)
-        UndoUpdating = False
+        If UndoBuffer.Count > 0 Then
+            UndoUpdating = True
+            Image = UndoBuffer.Last
+            UndoBuffer.RemoveAt(UndoBuffer.Count - 1)
+            UndoUpdating = False
+        End If
     End Sub
 
     Private Sub ZoomInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZoomInToolStripMenuItem.Click
