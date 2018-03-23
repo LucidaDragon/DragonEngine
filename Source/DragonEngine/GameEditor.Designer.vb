@@ -25,6 +25,7 @@ Partial Class GameEditor
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameEditor))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
@@ -32,7 +33,7 @@ Partial Class GameEditor
         Me.ImageList2 = New System.Windows.Forms.ImageList(Me.components)
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.NewLevelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -50,6 +51,16 @@ Partial Class GameEditor
         Me.ToolStrip1.Size = New System.Drawing.Size(837, 27)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewLevelToolStripMenuItem})
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(51, 24)
+        Me.ToolStripButton2.Text = "Add"
         '
         'ToolStripSeparator1
         '
@@ -326,14 +337,11 @@ Partial Class GameEditor
         Me.PropertyGrid1.Size = New System.Drawing.Size(440, 425)
         Me.PropertyGrid1.TabIndex = 0
         '
-        'ToolStripButton2
+        'NewLevelToolStripMenuItem
         '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(51, 24)
-        Me.ToolStripButton2.Text = "Add"
+        Me.NewLevelToolStripMenuItem.Name = "NewLevelToolStripMenuItem"
+        Me.NewLevelToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.NewLevelToolStripMenuItem.Text = "New Level"
         '
         'GameEditor
         '
@@ -365,4 +373,5 @@ Partial Class GameEditor
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton2 As ToolStripDropDownButton
+    Friend WithEvents NewLevelToolStripMenuItem As ToolStripMenuItem
 End Class

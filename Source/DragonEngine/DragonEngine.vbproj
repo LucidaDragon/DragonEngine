@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.vb" />
+    <Compile Include="ElementLoader.vb" />
     <Compile Include="GameEditor.Designer.vb">
       <DependentUpon>GameEditor.vb</DependentUpon>
     </Compile>
@@ -98,6 +99,7 @@
     <Compile Include="ITickable.vb" />
     <Compile Include="KeyManager.vb" />
     <Compile Include="Level.vb" />
+    <Compile Include="LevelLoader.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

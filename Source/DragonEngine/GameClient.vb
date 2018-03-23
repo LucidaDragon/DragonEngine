@@ -1,14 +1,12 @@
 ﻿Public Class GameClient
-    Public Property Levels As New List(Of Level)
-
     Sub New()
         InitializeComponent()
     End Sub
 
     Sub New(pakPath As String)
         InitializeComponent()
-        Me.Size = Size
         Try
+            WaitForFileWrite(pakPath)
             Dim pak As New IO.Compression.ZipArchive(New IO.FileStream(pakPath, IO.FileMode.Open), IO.Compression.ZipArchiveMode.Read)
             For Each entry In pak.Entries
                 GC.Collect()
@@ -25,20 +23,51 @@
                 ElseIf entry.Name.EndsWith(Globals.LevelPackageSuffix) Then
                     Dim level As New Level
                     level.FromStorage(buffer)
-                    Levels.Add(level)
                 End If
             Next
+            pak.Dispose()
         Catch ex As Exception
-            MsgBox("An error occured while loading the game files:" & Environment.NewLine & ex.Message & Environment.NewLine & ex.ToString)
+            MsgBox("An error occured while loading the game files:" & Environment.NewLine & ex.Message & Environment.NewLine & Environment.NewLine & ex.ToString)
         End Try
     End Sub
 
-    Public Sub LoadLevel(name As String)
-        For Each level In Levels
-            If level.LevelName = name Then
-
+    Public Sub WaitForFileWrite(file As String, Optional maxTries As Integer = 100)
+        Dim perms As Boolean = False
+        Dim tries As Integer = 0
+        While Not perms
+            If tries >= maxTries Then
+                Throw New IO.FileLoadException("The file could not be loaded because it is being used by another process: " & file)
             End If
-        Next
+            Try
+                Dim fStream As New IO.FileStream(file, IO.FileMode.Open)
+                perms = True
+            Catch ex As IO.FileNotFoundException
+                Try
+                    Dim fStream As New IO.FileStream(file, IO.FileMode.Open)
+                    perms = True
+                Catch
+                    perms = False
+                End Try
+            Catch
+                perms = False
+            End Try
+            tries += 1
+            If Not perms Then
+                Threading.Thread.Sleep(50)
+            End If
+        End While
+    End Sub
+
+    Public Sub LoadLevel(name As String)
+        If Not name = "" Then
+            For Each level In LevelLoader.Levels
+                If level.LevelName.ToLower() = name.ToLower() Then
+                    level.LoadLevel(Me)
+                    Exit Sub
+                End If
+            Next
+            Throw New Exception("Level '" & name & "' not found.")
+        End If
     End Sub
 
     Public GameObjects As New List(Of ITickable)
@@ -80,8 +109,14 @@
     End Sub
 
     Private Sub GameClient_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Size = GameProperties.Settings.GameResolution
+        Catch ex As NullReferenceException
+            Dim deafultGame As New GameProperties
+        End Try
         Size = GameProperties.Settings.GameResolution
         Text = GameProperties.Settings.GameDisplayName
         Icon = GameProperties.Settings.GameIcon
+        LoadLevel(GameProperties.Settings.DeafultLevel)
     End Sub
 End Class

@@ -13,6 +13,7 @@
     Public Property GameAuthor As String = Environment.UserName
     Public Property GameResolution As Size = New Size(800, 600)
     Public Property GameIcon As Icon
+    Public Property DeafultLevel As String
 
     Public Sub FromStorage(storage As Byte()) Implements IDataExchange.FromStorage
         Dim index As Integer = 0
@@ -29,6 +30,8 @@
                 GameResolution = New Size(Integer.Parse(elem), GameResolution.Height)
             ElseIf index = 4 Then
                 GameResolution = New Size(GameResolution.Width, Integer.Parse(elem))
+            ElseIf index = 5 Then
+                DeafultLevel = elem
             End If
             trim += elem & Chr(2)
             index += 1
@@ -38,10 +41,13 @@
     End Sub
 
     Public Function ToStorage() As Byte() Implements IDataExchange.ToStorage
-        Dim start As String = GameDisplayName & Chr(2) & GameVersion & Chr(2) & GameAuthor & Chr(2) & GameResolution.Width & Chr(2) & GameResolution.Height & Chr(2)
+        Dim start As String = GameDisplayName & Chr(2) & GameVersion & Chr(2) & GameAuthor & Chr(2) & GameResolution.Width & Chr(2) & GameResolution.Height & Chr(2) & DeafultLevel & Chr(2)
         Dim buffer As Byte()
         Dim memStream As New IO.MemoryStream
-        GameIcon.ToBitmap().Save(memStream, GameIcon.ToBitmap().RawFormat)
+        If GameIcon Is Nothing Then
+            GameIcon = Globals.DeafultIcon
+        End If
+        GameIcon.ToBitmap().Save(memStream, Imaging.ImageFormat.Jpeg)
         buffer = memStream.ToArray()
         Return Text.Encoding.ASCII.GetBytes(start & Text.Encoding.ASCII.GetChars(buffer))
     End Function

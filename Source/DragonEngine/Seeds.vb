@@ -14,7 +14,7 @@
     Public Shared Function GetNew() As String
         Dim result As String = String.Empty
         For i As Integer = 0 To 63
-            result += Rand.Next(0, 10)
+            result += Rand.Next(0, 10).ToString
         Next
         If ActiveSeeds.Contains(result) Then
             Return GetNew()
