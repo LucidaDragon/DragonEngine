@@ -28,7 +28,8 @@
     End Sub
 
     Private Sub GameEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AddItem(New Camera)
-        AddItem(New GameProperties)
+        GameClient.Show()
+        AddItem(Camera.Instance)
+        AddItem(GameProperties.Settings)
     End Sub
 End Class

@@ -82,22 +82,22 @@
         For Each elem As Integer In CameraUpKeys
             keys += elem & ","
         Next
-        keys.TrimEnd(",")
+        keys = keys.TrimEnd(",")
         keys += Chr(1)
         For Each elem As Integer In CameraDownKeys
             keys += elem & ","
         Next
-        keys.TrimEnd(",")
+        keys = keys.TrimEnd(",")
         keys += Chr(1)
         For Each elem As Integer In CameraLeftKeys
             keys += elem & ","
         Next
-        keys.TrimEnd(",")
+        keys = keys.TrimEnd(",")
         keys += Chr(1)
         For Each elem As Integer In CameraRightKeys
             keys += elem & ","
         Next
-        keys.TrimEnd(",")
+        keys = keys.TrimEnd(",")
 
         Return Text.Encoding.ASCII.GetBytes(Location.X & Chr(2) & Location.Y & keys)
     End Function

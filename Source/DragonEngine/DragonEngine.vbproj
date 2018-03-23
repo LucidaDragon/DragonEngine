@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="GameProperties.vb" />
     <Compile Include="IListable.vb" />
+    <Compile Include="IPhysics.vb" />
     <Compile Include="IRender.vb" />
     <Compile Include="ITickable.vb" />
     <Compile Include="KeyManager.vb" />
@@ -112,6 +113,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Seeds.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GameClient.resx">
