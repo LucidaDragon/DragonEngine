@@ -1,5 +1,6 @@
 ﻿Public Class GameProperties
     Implements IDataExchange
+    Implements IListable
 
     Public Shared Settings As GameProperties
 
@@ -43,5 +44,17 @@
         GameIcon.ToBitmap().Save(memStream, GameIcon.ToBitmap().RawFormat)
         buffer = memStream.ToArray()
         Return Text.Encoding.ASCII.GetBytes(start & Text.Encoding.ASCII.GetChars(buffer))
+    End Function
+
+    Public Function GetIcon() As String Implements IListable.GetIcon
+        Return "gear.png"
+    End Function
+
+    Public Function GetText() As String Implements IListable.GetText
+        Return "Game Properties"
+    End Function
+
+    Public Function GetPackageName() As String Implements IDataExchange.GetPackageName
+        Return Globals.SettingsPackageName
     End Function
 End Class

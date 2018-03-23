@@ -1,4 +1,6 @@
 ﻿Public Class GameClient
+    Public Property Levels As New List(Of Level)
+
     Sub New()
         InitializeComponent()
     End Sub
@@ -9,11 +11,21 @@
         Try
             Dim pak As New IO.Compression.ZipArchive(New IO.FileStream(pakPath, IO.FileMode.Open), IO.Compression.ZipArchiveMode.Read)
             For Each entry In pak.Entries
+                GC.Collect()
                 Dim buffer(entry.Length) As Byte
-                entry.Open().Read(buffer, 0, entry.Length)
-                If entry.Name = "Settings" Then
+                Dim stream As IO.Stream = entry.Open()
+                stream.Read(buffer, 0, entry.Length)
+                stream.Close()
+                If entry.Name = Globals.SettingsPackageName Then
                     Dim settings As New GameProperties
                     settings.FromStorage(buffer)
+                ElseIf entry.Name = Globals.CameraPackageName Then
+                    Dim camera As New Camera
+                    camera.FromStorage(buffer)
+                ElseIf entry.Name.EndsWith(Globals.LevelPackageSuffix) Then
+                    Dim level As New Level
+                    level.FromStorage(buffer)
+                    Levels.Add(level)
                 End If
             Next
         Catch ex As Exception
@@ -21,8 +33,16 @@
         End Try
     End Sub
 
+    Public Sub LoadLevel(name As String)
+        For Each level In Levels
+            If level.LevelName = name Then
+
+            End If
+        Next
+    End Sub
+
     Public GameObjects As New List(Of ITickable)
-    Public DrawCalls As New List(Of DrawCall)
+    Public DrawCalls As New List(Of IRender)
 
     Private DeltaMiliseconds As Integer = 0
 
@@ -38,8 +58,10 @@
             obj.Tick(DeltaMiliseconds / 1000)
         Next
 
+        DrawCalls.Sort(Function(x, y) x.GetZAxis().CompareTo(y.GetZAxis()))
+
         For Each drawCall In DrawCalls
-            e.Graphics.DrawImage(drawCall.Image, New Rectangle(drawCall.Location + Camera.Location, drawCall.Size))
+            e.Graphics.DrawImage(drawCall.GetImage(), drawCall.GetArea(Camera.Instance.Location))
         Next
 
         DeltaMiliseconds = (DateTime.Now - startTick).TotalMilliseconds
