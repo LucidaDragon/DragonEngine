@@ -20,7 +20,19 @@
     End Sub
 
     Public Sub FromStorage(storage() As Byte) Implements IDataExchange.FromStorage
+        Dim data As String = Text.Encoding.ASCII.GetChars(storage)
 
+        Dim pos As Integer = 0
+        Dim parts As String() = data.Split(Chr(2))
+        LevelName = parts(0)
+        pos += parts(0).Length + 1 + parts(1).Length + 1
+
+        For Each elem In parts(1).Split(Chr(1))
+            StaticElements.Add(ElementLoader.GetElementFromName(elem))
+        Next
+
+        Dim imageStream As New IO.MemoryStream(Text.Encoding.ASCII.GetBytes(data.Remove(0, pos)))
+        BackgroundImage = New Bitmap(imageStream)
     End Sub
 
     Public Function GetIcon() As String Implements IListable.GetIcon
