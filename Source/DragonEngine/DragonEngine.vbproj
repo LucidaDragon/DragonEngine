@@ -87,6 +87,9 @@
     <Compile Include="GameWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="IListIcon.vb" />
+    <Compile Include="ISpecialEditObject.vb" />
+    <Compile Include="JsonFileObject.vb" />
     <Compile Include="JsonObject.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -103,6 +106,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ObjectBrowserWindow.Designer.vb">
+      <DependentUpon>ObjectBrowserWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectBrowserWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EditorWindow.resx">
@@ -116,6 +125,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectBrowserWindow.resx">
+      <DependentUpon>ObjectBrowserWindow.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿Public Class GameProperties
-    Inherits JsonObject
+    Inherits JsonFileObject
 
     ''' <summary>
     ''' The single instance of the GameProperties class, so that PropertyGrid and JsonSerializer can reference an object.

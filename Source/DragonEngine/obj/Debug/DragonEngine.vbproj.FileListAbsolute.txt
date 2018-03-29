@@ -11,3 +11,17 @@ C:\Users\LucidaDragon\source\repos\DragonEngine\DragonEngine\obj\Debug\DragonEng
 C:\Users\LucidaDragon\source\repos\DragonEngine\DragonEngine\obj\Debug\DragonEngine.exe
 C:\Users\LucidaDragon\source\repos\DragonEngine\DragonEngine\obj\Debug\DragonEngine.xml
 C:\Users\LucidaDragon\source\repos\DragonEngine\DragonEngine\obj\Debug\DragonEngine.pdb
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.exe.config
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.exe
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.pdb
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.xml
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbprojResolveAssemblyReference.cache
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.EditorWindow.resources
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.GameWindow.resources
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.Resources.resources
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.ObjectBrowserWindow.resources
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbproj.GenerateResource.Cache
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbproj.CoreCompileInputs.cache
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.exe
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.xml
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.pdb
