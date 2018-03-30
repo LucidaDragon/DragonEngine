@@ -94,7 +94,6 @@ DragonEngine
  <typeparam name="T">The object's type.</typeparam>
  <param name="obj">The object to save to disk.</param>
  <param name="path">The file to save the data to.</param>
- <returns>The raw json data.</returns>
 </member>
 <member name="M:DragonEngine.JsonData.ReadFromFile``1(System.String)">
  <summary>

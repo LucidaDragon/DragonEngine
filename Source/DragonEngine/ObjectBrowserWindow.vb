@@ -108,11 +108,27 @@
         AddObject(ObjectLoader.ObjectFromDisk(path))
     End Sub
 
-    Public Sub AutoSave()
-        If IO.File.Exists(LastSaveLocation) Then
+    Public Sub AutoSave(sendToPackage As Boolean)
+        For Each elem As ListViewItem In ObjectView.Items
+            Dim obj As ISerialize = TryCast(elem.Tag, ISerialize)
+            If obj IsNot Nothing Then
+                obj.ToDisk(Engine.EditorWorkingFolder & "\" & GetItemFileName(elem))
+            End If
+        Next
+
+        If IO.File.Exists(LastSaveLocation) And sendToPackage Then
             Engine.Package.WritePackage(LastSaveLocation)
         End If
     End Sub
+
+    Public Shared Function GetItemFileName(item As ListViewItem) As String
+        Dim obj As ISerialize = TryCast(item.Tag, ISerialize)
+        If obj Is Nothing Then
+            Return item.Text & "." & item.Tag.GetType().Name & ".json"
+        Else
+            Return item.Text & "." & obj.GetType().Name & ".json"
+        End If
+    End Function
 
     Private Sub ObjectBrowserWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LargeIconList.ImageSize = New Size(64, 64)

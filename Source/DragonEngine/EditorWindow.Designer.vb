@@ -24,7 +24,7 @@ Partial Class EditorWindow
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditorWindow))
         Me.SplitDesigner = New System.Windows.Forms.SplitContainer()
-        Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
+        Me.ObjectPropertyGrid = New System.Windows.Forms.PropertyGrid()
         CType(Me.SplitDesigner, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitDesigner.Panel1.SuspendLayout()
         Me.SplitDesigner.SuspendLayout()
@@ -39,18 +39,18 @@ Partial Class EditorWindow
         '
         'SplitDesigner.Panel1
         '
-        Me.SplitDesigner.Panel1.Controls.Add(Me.PropertyGrid1)
+        Me.SplitDesigner.Panel1.Controls.Add(Me.ObjectPropertyGrid)
         Me.SplitDesigner.Size = New System.Drawing.Size(900, 479)
         Me.SplitDesigner.SplitterDistance = 330
         Me.SplitDesigner.TabIndex = 0
         '
-        'PropertyGrid1
+        'ObjectPropertyGrid
         '
-        Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PropertyGrid1.Location = New System.Drawing.Point(0, 0)
-        Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(328, 477)
-        Me.PropertyGrid1.TabIndex = 0
+        Me.ObjectPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ObjectPropertyGrid.Location = New System.Drawing.Point(0, 0)
+        Me.ObjectPropertyGrid.Name = "ObjectPropertyGrid"
+        Me.ObjectPropertyGrid.Size = New System.Drawing.Size(328, 477)
+        Me.ObjectPropertyGrid.TabIndex = 0
         '
         'EditorWindow
         '
@@ -69,5 +69,5 @@ Partial Class EditorWindow
     End Sub
 
     Friend WithEvents SplitDesigner As SplitContainer
-    Friend WithEvents PropertyGrid1 As PropertyGrid
+    Friend WithEvents ObjectPropertyGrid As PropertyGrid
 End Class

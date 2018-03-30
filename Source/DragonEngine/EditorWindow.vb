@@ -6,7 +6,7 @@ Public Class EditorWindow
         SplitDesigner.Panel2.Controls.Clear()
 
         If TryCast(obj, ISpecialEditObject) Is Nothing Then
-            PropertyGrid1.SelectedObject = Nothing
+            ObjectPropertyGrid.SelectedObject = Nothing
             SplitDesigner.Panel1.Enabled = False
             SplitDesigner.Panel2.Enabled = True
 
@@ -38,13 +38,13 @@ Public Class EditorWindow
                 SplitDesigner.Panel1.Enabled = True
                 SplitDesigner.Panel2.Enabled = False
 
-                PropertyGrid1.SelectedObject = obj
+                ObjectPropertyGrid.SelectedObject = obj
             End If
         Else
             SplitDesigner.Panel1.Enabled = True
             SplitDesigner.Panel2.Enabled = False
 
-            PropertyGrid1.SelectedObject = obj
+            ObjectPropertyGrid.SelectedObject = obj
         End If
 
         SplitDesigner.Invalidate()
@@ -54,5 +54,9 @@ Public Class EditorWindow
         If SplitDesigner.Panel2.Controls.Count = 0 Then
             Close()
         End If
+    End Sub
+
+    Private Sub ObjectPropertyGrid_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles ObjectPropertyGrid.PropertyValueChanged
+        ObjectBrowserWindow.AutoSave(False)
     End Sub
 End Class
