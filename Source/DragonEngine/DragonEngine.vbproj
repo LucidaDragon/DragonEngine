@@ -77,6 +77,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.vb" />
+    <Compile Include="AnimationDisplay.Designer.vb">
+      <DependentUpon>AnimationDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AnimationDisplay.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="EditorWindow.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +99,7 @@
     <Compile Include="GameWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="IDrawing.vb" />
     <Compile Include="IListIcon.vb" />
     <Compile Include="Image.vb" />
     <Compile Include="ISerialize.vb" />
@@ -121,8 +129,17 @@
     <Compile Include="ObjectLoader.vb" />
     <Compile Include="Package.vb" />
     <Compile Include="SpecialListViewItem.vb" />
+    <Compile Include="TextInputBox.Designer.vb">
+      <DependentUpon>TextInputBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TextInputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AnimationDisplay.resx">
+      <DependentUpon>AnimationDisplay.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditorWindow.resx">
       <DependentUpon>EditorWindow.vb</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectBrowserWindow.resx">
       <DependentUpon>ObjectBrowserWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextInputBox.resx">
+      <DependentUpon>TextInputBox.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

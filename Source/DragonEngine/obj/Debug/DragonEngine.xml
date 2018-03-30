@@ -22,6 +22,18 @@ DragonEngine
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:DragonEngine.Animation.Images">
+ <summary>
+ List of images to animate with.
+ </summary>
+ <returns>The list of images to animate with.</returns>
+</member>
+<member name="P:DragonEngine.Animation.Delay">
+ <summary>
+ Delay between images in milliseconds.
+ </summary>
+ <returns>Delay in milliseconds.</returns>
+</member>
 <member name="F:DragonEngine.Engine.EditorWorkingFolder">
  <summary>
  The working folder for the currently open project.
@@ -58,6 +70,12 @@ DragonEngine
  <param name="showDialog">Whether this action should show a dialog if it will overwrite files.</param>
  <param name="createDeafultObjects">Whether to create deafult project objects.</param>
  <returns>Whether this operation completed successfully.</returns>
+</member>
+<member name="M:DragonEngine.Engine.OpenProject(System.String)">
+ <summary>
+ Load a project from a package.
+ </summary>
+ <param name="path">The package to load from.</param>
 </member>
 <member name="F:DragonEngine.GameProperties.Instance">
  <summary>

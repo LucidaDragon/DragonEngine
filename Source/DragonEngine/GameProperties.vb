@@ -49,4 +49,8 @@
     Public Function GetIconName() As String Implements IListIcon.GetIconName
         Return "gear.png"
     End Function
+
+    Public Function GetSubItems() As List(Of IListIcon) Implements IListIcon.GetSubItems
+        Return New List(Of IListIcon)
+    End Function
 End Class

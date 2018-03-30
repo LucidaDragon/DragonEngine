@@ -104,7 +104,7 @@
 
         Public Shared Sub Draw(g As Drawing.Graphics, bounds As Rectangle)
             For Each drawCall In DrawCalls
-                g.DrawImage(drawCall.Sprite, drawCall.Location.X, drawCall.Location.Y, drawCall.Size.Width, drawCall.Size.Height)
+                g.DrawImage(drawCall.Sprite, CameraPosition.X - drawCall.Location.X, CameraPosition.Y - drawCall.Location.Y, drawCall.Size.Width, drawCall.Size.Height)
             Next
         End Sub
 

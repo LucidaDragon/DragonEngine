@@ -158,7 +158,7 @@
     ''' </summary>
     ''' <param name="item">The item to get the file name for.</param>
     ''' <returns>The file name.</returns>
-    Public Shared Function GetItemFileName(item As ListViewItem) As String
+    Public Function GetItemFileName(item As ListViewItem) As String
         Dim obj As ISerialize = TryCast(item.Tag, ISerialize)
         If obj Is Nothing Then
             Return item.Text & "." & item.Tag.GetType().Name & ".json"
@@ -166,6 +166,14 @@
             Return item.Text & "." & obj.GetType().Name & ".json"
         End If
     End Function
+
+    Public Sub AddObjectWithDialog(obj As IListIcon)
+        Dim dia As New TextInputBox("Enter Item Name")
+        If dia.ShowDialog() = DialogResult.OK Then
+            obj.Name = dia.Text
+            AddObject(obj)
+        End If
+    End Sub
 
     Private Sub ObjectBrowserWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ObjectView.View = My.Settings.ViewType
@@ -231,5 +239,9 @@
             Engine.OpenProject(dia.FileName)
             LastSaveLocation = dia.FileName
         End If
+    End Sub
+
+    Private Sub AnimationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AnimationToolStripMenuItem.Click
+        AddObjectWithDialog(New Animation)
     End Sub
 End Class

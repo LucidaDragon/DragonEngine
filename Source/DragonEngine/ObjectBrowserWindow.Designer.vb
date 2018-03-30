@@ -37,6 +37,7 @@ Partial Class ObjectBrowserWindow
         Me.ObjectView = New System.Windows.Forms.ListView()
         Me.LargeIconList = New System.Windows.Forms.ImageList(Me.components)
         Me.IconList = New System.Windows.Forms.ImageList(Me.components)
+        Me.AnimationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -64,24 +65,25 @@ Partial Class ObjectBrowserWindow
         'NewProjectToolStripMenuItem
         '
         Me.NewProjectToolStripMenuItem.Name = "NewProjectToolStripMenuItem"
-        Me.NewProjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.NewProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
         Me.NewProjectToolStripMenuItem.Text = "New Project"
         '
         'OpenProjectToolStripMenuItem
         '
         Me.OpenProjectToolStripMenuItem.Name = "OpenProjectToolStripMenuItem"
-        Me.OpenProjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.OpenProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
         Me.OpenProjectToolStripMenuItem.Text = "Open Project"
         '
         'SaveProjectToolStripMenuItem
         '
         Me.SaveProjectToolStripMenuItem.Name = "SaveProjectToolStripMenuItem"
-        Me.SaveProjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.SaveProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
         Me.SaveProjectToolStripMenuItem.Text = "Save Project"
         '
         'AddItemDropDown
         '
         Me.AddItemDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.AddItemDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnimationToolStripMenuItem})
         Me.AddItemDropDown.Image = CType(resources.GetObject("AddItemDropDown.Image"), System.Drawing.Image)
         Me.AddItemDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddItemDropDown.Name = "AddItemDropDown"
@@ -353,6 +355,12 @@ Partial Class ObjectBrowserWindow
         Me.IconList.Images.SetKeyName(105, "zoomIn.png")
         Me.IconList.Images.SetKeyName(106, "zoomOut.png")
         '
+        'AnimationToolStripMenuItem
+        '
+        Me.AnimationToolStripMenuItem.Name = "AnimationToolStripMenuItem"
+        Me.AnimationToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.AnimationToolStripMenuItem.Text = "Animation"
+        '
         'ObjectBrowserWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -383,4 +391,5 @@ Partial Class ObjectBrowserWindow
     Friend WithEvents LargeIconList As ImageList
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents ChangeViewButton As ToolStripButton
+    Friend WithEvents AnimationToolStripMenuItem As ToolStripMenuItem
 End Class
