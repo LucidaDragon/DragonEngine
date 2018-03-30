@@ -27,6 +27,16 @@ DragonEngine
  The working folder for the currently open project.
  </summary>
 </member>
+<member name="F:DragonEngine.Engine.GamePropertiesPath">
+ <summary>
+ The path to the GameProperties instanced when saved to disk.
+ </summary>
+</member>
+<member name="F:DragonEngine.Engine.Package">
+ <summary>
+ The currently loaded package.
+ </summary>
+</member>
 <member name="M:DragonEngine.Engine.FindType(System.String)">
  <summary>
  Find a specified type via a string name.
@@ -41,6 +51,14 @@ DragonEngine
  <param name="path">The path to the file.</param>
  <returns>The type or nothing if the type was not found.</returns>
 </member>
+<member name="M:DragonEngine.Engine.NewProject(System.Boolean,System.Boolean)">
+ <summary>
+ Creates a new project in the working directory, overwriting the previous one.
+ </summary>
+ <param name="showDialog">Whether this action should show a dialog if it will overwrite files.</param>
+ <param name="createDeafultObjects">Whether to create deafult project objects.</param>
+ <returns>Whether this operation completed successfully.</returns>
+</member>
 <member name="F:DragonEngine.GameProperties.Instance">
  <summary>
  The single instance of the GameProperties class, so that PropertyGrid and JsonSerializer can reference an object.
@@ -49,6 +67,11 @@ DragonEngine
 <member name="M:DragonEngine.GameProperties.#ctor">
  <summary>
  Constructs a new GameProperties instance and overwrites the previous one.
+ </summary>
+</member>
+<member name="M:DragonEngine.GameProperties.Init">
+ <summary>
+ Initialize a new GameProperty instance.
  </summary>
 </member>
 <member name="M:DragonEngine.ISerialize.ToDisk(System.String)">

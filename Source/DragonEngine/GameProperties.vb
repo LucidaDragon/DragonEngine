@@ -41,6 +41,6 @@
     End Function
 
     Public Function GetIconName() As String Implements IListIcon.GetIconName
-        Return "property"
+        Return "gear.png"
     End Function
 End Class
