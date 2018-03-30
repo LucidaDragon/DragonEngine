@@ -102,6 +102,7 @@
     <Compile Include="IDrawing.vb" />
     <Compile Include="IListIcon.vb" />
     <Compile Include="Image.vb" />
+    <Compile Include="INamedObject.vb" />
     <Compile Include="ISerialize.vb" />
     <Compile Include="ISpecialEditObject.vb" />
     <Compile Include="JsonData.vb" />
@@ -127,6 +128,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ObjectLoader.vb" />
+    <Compile Include="ObjectLookupTable.vb" />
     <Compile Include="Package.vb" />
     <Compile Include="SpecialListViewItem.vb" />
     <Compile Include="TextInputBox.Designer.vb">
@@ -173,6 +175,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DragonIcon.ico" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\wrench.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\zoomDefault.png" />
+    <None Include="Resources\right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

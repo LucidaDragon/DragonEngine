@@ -7,4 +7,12 @@
     Private Sub GameWindow_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         Engine.Graphics.Draw(e.Graphics, New Rectangle(New Point(Size.Width / -2, Size.Height / -2), Size))
     End Sub
+
+    Private Sub GameWindow_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        Timer.Start()
+    End Sub
+
+    Private Sub GameWindow_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        Timer.Stop()
+    End Sub
 End Class

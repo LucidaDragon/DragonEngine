@@ -22,8 +22,14 @@ Partial Class GameWindow
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameWindow))
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
+        '
+        'Timer
+        '
+        Me.Timer.Interval = 1
         '
         'GameWindow
         '
@@ -38,4 +44,6 @@ Partial Class GameWindow
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents Timer As Timer
 End Class

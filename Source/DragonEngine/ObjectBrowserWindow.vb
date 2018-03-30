@@ -139,6 +139,9 @@
     ''' <param name="sendToPackage">Optionally save to last package location.</param>
     ''' <returns>Whether the package was saved.</returns>
     Public Function AutoSave(sendToPackage As Boolean) As Boolean
+        For Each file In IO.Directory.GetFiles(Engine.EditorWorkingFolder)
+            IO.File.Delete(file)
+        Next
         For Each elem As ListViewItem In ObjectView.Items
             Dim obj As ISerialize = TryCast(elem.Tag, ISerialize)
             If obj IsNot Nothing Then
@@ -146,8 +149,11 @@
             End If
         Next
 
+        GC.Collect()
+
         If IO.File.Exists(LastSaveLocation) And sendToPackage Then
             Engine.Package.WritePackage(LastSaveLocation)
+            GC.Collect()
             Return True
         End If
         Return False
@@ -178,15 +184,18 @@
     Private Sub ObjectBrowserWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ObjectView.View = My.Settings.ViewType
         Engine.NewProject(False, True)
+        Timer.Start()
     End Sub
 
     Private Sub ObjectView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ObjectView.SelectedIndexChanged
         If ObjectView.SelectedIndices.Count > 0 Then
             SelectedObject = ObjectView.Items.Item(ObjectView.SelectedIndices.Item(0)).Tag
             EditItemButton.Enabled = True
+            DeleteButton.Enabled = True
         Else
             SelectedObject = Nothing
             EditItemButton.Enabled = False
+            DeleteButton.Enabled = False
         End If
     End Sub
 
@@ -204,7 +213,9 @@
             }
 
             If dia.ShowDialog() = DialogResult.OK Then
+                Timer.Stop()
                 Engine.Package.WritePackage(dia.FileName)
+                Timer.Start()
                 LastSaveLocation = dia.FileName
             End If
         End If
@@ -243,5 +254,22 @@
 
     Private Sub AnimationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AnimationToolStripMenuItem.Click
         AddObjectWithDialog(New Animation)
+    End Sub
+
+    Private Sub DeleteButton_Click(sender As Object, e As EventArgs) Handles DeleteButton.Click
+        Dim item As ListViewItem = ObjectView.Items(ObjectView.SelectedIndices(0))
+        If IO.File.Exists(Engine.EditorWorkingFolder & "\" & GetItemFileName(item)) Then
+            IO.File.Delete(Engine.EditorWorkingFolder & "\" & GetItemFileName(item))
+        End If
+        ObjectView.Items.Remove(item)
+    End Sub
+
+    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
+        Dim beginEval As DateTime = DateTime.Now
+
+        ObjectView.Invalidate()
+        AutoSave(False)
+
+        Timer.Interval = ((DateTime.Now - beginEval).TotalMilliseconds * 4) + 3000
     End Sub
 End Class

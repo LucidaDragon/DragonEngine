@@ -1,4 +1,9 @@
 ﻿Public Class JsonData
+    Private Shared Json As New Web.Script.Serialization.JavaScriptSerializer With {
+        .MaxJsonLength = Integer.MaxValue,
+        .RecursionLimit = Integer.MaxValue
+    }
+
     ''' <summary>
     ''' Saves an object in memory to disk for later use.
     ''' </summary>
@@ -6,7 +11,7 @@
     ''' <param name="obj">The object to save to disk.</param>
     ''' <param name="path">The file to save the data to.</param>
     Public Shared Sub WriteToFile(Of T)(obj As Object, path As String)
-        IO.File.WriteAllText(path, New Web.Script.Serialization.JavaScriptSerializer().Serialize(CType(obj, T)))
+        IO.File.WriteAllText(path, Json.Serialize(CType(obj, T)))
     End Sub
 
     ''' <summary>
@@ -16,6 +21,6 @@
     ''' <param name="path">The file to read data from.</param>
     ''' <returns>The object read from the disk.</returns>
     Public Shared Function ReadFromFile(Of T)(path As String) As T
-        Return New Web.Script.Serialization.JavaScriptSerializer().Deserialize(Of T)(IO.File.ReadAllText(path))
+        Return Json.Deserialize(Of T)(IO.File.ReadAllText(path))
     End Function
 End Class
