@@ -147,6 +147,13 @@ DragonEngine
  <param name="sendToPackage">Optionally save to last package location.</param>
  <returns>Whether the package was saved.</returns>
 </member>
+<member name="M:DragonEngine.ObjectBrowserWindow.GetItemFileName(System.Windows.Forms.ListViewItem)">
+ <summary>
+ Get the package file name of a ListViewItem.
+ </summary>
+ <param name="item">The item to get the file name for.</param>
+ <returns>The file name.</returns>
+</member>
 <member name="F:DragonEngine.Package.Files">
  <summary>
  The list of files in this package.

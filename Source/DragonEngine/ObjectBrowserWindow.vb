@@ -170,9 +170,10 @@
 
     Private Sub ObjectBrowserWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LargeIconList.ImageSize = New Size(64, 64)
-        LargeIconList.Images.AddRange(IconList.Images.OfType(Of Image).ToArray())
+        LargeIconList.Images.AddRange(IconList.Images.OfType(Of Drawing.Image).ToArray())
         ObjectView.LargeImageList = LargeIconList
         Engine.NewProject(False, True)
+        AddObject(New Image)
     End Sub
 
     Private Sub ObjectView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ObjectView.SelectedIndexChanged

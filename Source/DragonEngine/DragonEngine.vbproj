@@ -93,6 +93,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IListIcon.vb" />
+    <Compile Include="Image.vb" />
     <Compile Include="ISerialize.vb" />
     <Compile Include="ISpecialEditObject.vb" />
     <Compile Include="JsonData.vb" />
