@@ -17,6 +17,9 @@
         End Sub
     End Class
 
+    ''' <summary>
+    ''' Clean up any open objects that are null.
+    ''' </summary>
     Public Sub CleanUpObjects()
         Dim toRemove As New List(Of ObjWindow)
         For Each obj In OpenObjs
@@ -29,6 +32,11 @@
         Next
     End Sub
 
+    ''' <summary>
+    ''' Check if an object is being edited.
+    ''' </summary>
+    ''' <param name="obj">The object to check for.</param>
+    ''' <returns>Returns true if the object is being edited. Returns false if not.</returns>
     Public Function IsObjectOpen(obj As Object) As Boolean
         For Each elem In OpenObjs
             If elem.ID = obj.GetHashCode() Then
@@ -38,6 +46,11 @@
         Return False
     End Function
 
+    ''' <summary>
+    ''' Get the form that is currently editing an object.
+    ''' </summary>
+    ''' <param name="obj">The object to check for.</param>
+    ''' <returns>Returns a form or nothing if the object is not being edited.</returns>
     Public Function GetObjectWindow(obj As Object) As Form
         For Each elem In OpenObjs
             If elem.ID = obj.GetHashCode() Then
@@ -47,6 +60,10 @@
         Return Nothing
     End Function
 
+    ''' <summary>
+    ''' Shows an object in the editor.
+    ''' </summary>
+    ''' <param name="obj">The object to show.</param>
     Public Sub ShowObject(obj As Object)
         If Not IsObjectOpen(obj) Then
             Dim frm As New EditorWindow()
@@ -54,6 +71,7 @@
 
             OpenObjs.Add(openObj)
 
+            AddHandler frm.FormClosed, AddressOf CleanUpObjects
             frm.EditObject(obj)
             frm.Show()
         Else
@@ -61,6 +79,10 @@
         End If
     End Sub
 
+    ''' <summary>
+    ''' Adds an object to the ObjectView.
+    ''' </summary>
+    ''' <param name="obj">The object to add.</param>
     Public Sub AddObject(obj As Object)
         If TryCast(obj, IListIcon) Is Nothing Then
             Dim count As Integer = 1
@@ -104,11 +126,20 @@
         End If
     End Sub
 
+    ''' <summary>
+    ''' Deserialize a json file and add it as an object.
+    ''' </summary>
+    ''' <param name="path">The json file path.</param>
     Public Sub AddJsonFile(path As String)
         AddObject(ObjectLoader.ObjectFromDisk(path))
     End Sub
 
-    Public Sub AutoSave(sendToPackage As Boolean)
+    ''' <summary>
+    ''' Writes all objects to disk.
+    ''' </summary>
+    ''' <param name="sendToPackage">Optionally save to last package location.</param>
+    ''' <returns>Whether the package was saved.</returns>
+    Public Function AutoSave(sendToPackage As Boolean) As Boolean
         For Each elem As ListViewItem In ObjectView.Items
             Dim obj As ISerialize = TryCast(elem.Tag, ISerialize)
             If obj IsNot Nothing Then
@@ -118,9 +149,16 @@
 
         If IO.File.Exists(LastSaveLocation) And sendToPackage Then
             Engine.Package.WritePackage(LastSaveLocation)
+            Return True
         End If
-    End Sub
+        Return False
+    End Function
 
+    ''' <summary>
+    ''' Get the package file name of a ListViewItem.
+    ''' </summary>
+    ''' <param name="item">The item to get the file name for.</param>
+    ''' <returns>The file name.</returns>
     Public Shared Function GetItemFileName(item As ListViewItem) As String
         Dim obj As ISerialize = TryCast(item.Tag, ISerialize)
         If obj Is Nothing Then
@@ -152,15 +190,18 @@
     End Sub
 
     Private Sub SaveProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveProjectToolStripMenuItem.Click
-        Dim dia As New SaveFileDialog With {
-            .Title = "Save As",
-            .DefaultExt = "dpak",
-            .OverwritePrompt = True,
-            .Filter = "*.dpak|Dragon Engine Package"
-        }
-        If dia.ShowDialog() = DialogResult.OK Then
-            Engine.Package.WritePackage(dia.FileName)
-            LastSaveLocation = dia.FileName
+        If Not AutoSave(True) Then
+            Dim dia As New SaveFileDialog With {
+                .Title = "Save As",
+                .DefaultExt = "dpak",
+                .OverwritePrompt = True,
+                .Filter = "*.dpak|Dragon Engine Package"
+            }
+
+            If dia.ShowDialog() = DialogResult.OK Then
+                Engine.Package.WritePackage(dia.FileName)
+                LastSaveLocation = dia.FileName
+            End If
         End If
     End Sub
 
