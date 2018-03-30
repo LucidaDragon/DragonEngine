@@ -24,3 +24,4 @@ C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debu
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.exe
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.xml
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.pdb
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbprojResolveAssemblyReference.cache

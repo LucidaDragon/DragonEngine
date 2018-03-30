@@ -5,10 +5,9 @@
     ''' <typeparam name="T">The object's type.</typeparam>
     ''' <param name="obj">The object to save to disk.</param>
     ''' <param name="path">The file to save the data to.</param>
-    ''' <returns>The raw json data.</returns>
-    Public Shared Function WriteToFile(Of T)(obj As Object, path As String) As String
-        Return New Web.Script.Serialization.JavaScriptSerializer().Serialize(CType(obj, T))
-    End Function
+    Public Shared Sub WriteToFile(Of T)(obj As Object, path As String)
+        IO.File.WriteAllText(path, New Web.Script.Serialization.JavaScriptSerializer().Serialize(CType(obj, T)))
+    End Sub
 
     ''' <summary>
     ''' Reads an object from disk into memory.

@@ -118,8 +118,6 @@
         LargeIconList.ImageSize = New Size(64, 64)
         LargeIconList.Images.AddRange(IconList.Images.OfType(Of Image).ToArray())
         ObjectView.LargeImageList = LargeIconList
-
-        'TODO: Remove this.
         Engine.NewProject(False, True)
     End Sub
 
@@ -147,6 +145,12 @@
         If dia.ShowDialog() = DialogResult.OK Then
             Engine.Package.WritePackage(dia.FileName)
             LastSaveLocation = dia.FileName
+        End If
+    End Sub
+
+    Private Sub ObjectBrowserWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If Not Engine.NewProject(True, False) Then
+            e.Cancel = True
         End If
     End Sub
 End Class
