@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="ObjectLoader.vb" />
     <Compile Include="Package.vb" />
+    <Compile Include="SpecialListViewItem.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EditorWindow.resx">

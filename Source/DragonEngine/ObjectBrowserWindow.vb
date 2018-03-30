@@ -1,5 +1,4 @@
 ﻿Public Class ObjectBrowserWindow
-    Public LargeIconList As New ImageList
     Public SelectedObject As Object
     Public LastSaveLocation As String = Nothing
 
@@ -97,7 +96,7 @@
                 text += count.ToString()
             End If
 
-            Dim item As New ListViewItem(text) With {
+            Dim item As New SpecialListViewItem(text) With {
                 .ImageKey = "target.png",
                 .Tag = obj
             }
@@ -118,7 +117,7 @@
                 End If
             End If
 
-            Dim item As New ListViewItem(listIcon.Name) With {
+            Dim item As New SpecialListViewItem(listIcon.Name) With {
                 .ImageKey = listIcon.GetIconName(),
                 .Tag = obj
             }
@@ -169,11 +168,8 @@
     End Function
 
     Private Sub ObjectBrowserWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LargeIconList.ImageSize = New Size(64, 64)
-        LargeIconList.Images.AddRange(IconList.Images.OfType(Of Drawing.Image).ToArray())
-        ObjectView.LargeImageList = LargeIconList
+        ObjectView.View = My.Settings.ViewType
         Engine.NewProject(False, True)
-        AddObject(New Image)
     End Sub
 
     Private Sub ObjectView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ObjectView.SelectedIndexChanged
@@ -209,6 +205,31 @@
     Private Sub ObjectBrowserWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If Not Engine.NewProject(True, False) Then
             e.Cancel = True
+        End If
+        My.Settings.ViewType = ObjectView.View
+        My.Settings.Save()
+    End Sub
+
+    Private Sub ChangeViewButton_Click(sender As Object, e As EventArgs) Handles ChangeViewButton.Click
+        If ObjectView.View = View.LargeIcon Then
+            ObjectView.View = View.SmallIcon
+        ElseIf ObjectView.View = View.SmallIcon Then
+            ObjectView.View = View.List
+        ElseIf ObjectView.View = View.List Then
+            ObjectView.View = View.LargeIcon
+        End If
+    End Sub
+
+    Private Sub OpenProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenProjectToolStripMenuItem.Click
+        Dim dia As New OpenFileDialog With {
+            .Title = "Save As",
+            .DefaultExt = "dpak",
+            .Filter = "*.dpak|Dragon Engine Package"
+        }
+
+        If dia.ShowDialog() = DialogResult.OK Then
+            Engine.OpenProject(dia.FileName)
+            LastSaveLocation = dia.FileName
         End If
     End Sub
 End Class

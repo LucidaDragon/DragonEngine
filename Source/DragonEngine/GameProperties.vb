@@ -7,7 +7,7 @@
     ''' </summary>
     Public Shared Instance As GameProperties
 
-    Public Property GameIcon As Icon
+    Public Property GameIcon As Image
     Public Property GameName As String
     Public Property GameVersion As String = "1.0.0"
     Public Property GameAuthor As String = Environment.UserName

@@ -84,8 +84,64 @@
         Return True
     End Function
 
+    ''' <summary>
+    ''' Load a project from a package.
+    ''' </summary>
+    ''' <param name="path">The package to load from.</param>
     Public Shared Sub OpenProject(path As String)
         NewProject(True, False)
         Package.ReadPackage(path)
     End Sub
+
+    Public Class Graphics
+        Public Shared CameraPosition As New Point(0, 0)
+
+        Public Shared DrawCalls As New List(Of DrawCall)
+
+        Public Shared Sub SortZ()
+            DrawCalls.Sort()
+        End Sub
+
+        Public Shared Sub Draw(g As Drawing.Graphics, bounds As Rectangle)
+            For Each drawCall In DrawCalls
+                g.DrawImage(drawCall.Sprite, drawCall.Location.X, drawCall.Location.Y, drawCall.Size.Width, drawCall.Size.Height)
+            Next
+        End Sub
+
+        Public Class DrawCall
+            Public Property Location As Point
+            Public Property Size As Size
+            Public Property Sprite As Bitmap
+            Public Property DrawZ As Integer
+
+            Public Event Drawn(sender As Object, e As InvalidateEventArgs)
+
+            Sub New(location As Point, size As Size, sprite As Bitmap, Optional drawZ As Integer = 0)
+                Me.Location = location
+                Me.Size = size
+                Me.Sprite = sprite
+                Me.DrawZ = drawZ
+            End Sub
+
+            Public Sub WasDrawn()
+                RaiseEvent Drawn(Me, New InvalidateEventArgs(New Rectangle(Location, Size)))
+            End Sub
+
+            Public Shared Operator =(a As DrawCall, b As DrawCall)
+                Return a.DrawZ = b.DrawZ
+            End Operator
+
+            Public Shared Operator <>(a As DrawCall, b As DrawCall)
+                Return Not a.DrawZ = b.DrawZ
+            End Operator
+
+            Public Shared Operator >(a As DrawCall, b As DrawCall)
+                Return a.DrawZ > b.DrawZ
+            End Operator
+
+            Public Shared Operator <(a As DrawCall, b As DrawCall)
+                Return a.DrawZ < b.DrawZ
+            End Operator
+        End Class
+    End Class
 End Class
