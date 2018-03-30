@@ -1,6 +1,6 @@
 ﻿#Disable Warning IDE0037
 Public Class EditorWindow
-    Public Sub EditObject(obj As JsonObject)
+    Public Sub EditObject(obj As Object)
         SplitDesigner.Panel2.Controls.Clear()
 
         If TryCast(obj, ISpecialEditObject) Is Nothing Then

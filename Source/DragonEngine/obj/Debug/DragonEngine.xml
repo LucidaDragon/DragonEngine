@@ -22,6 +22,25 @@ DragonEngine
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="F:DragonEngine.Engine.EditorWorkingFolder">
+ <summary>
+ The working folder for the currently open project.
+ </summary>
+</member>
+<member name="M:DragonEngine.Engine.FindType(System.String)">
+ <summary>
+ Find a specified type via a string name.
+ </summary>
+ <param name="name">The type name to search for.</param>
+ <returns>The type or nothing if it was not found.</returns>
+</member>
+<member name="M:DragonEngine.Engine.GetTypeOfFile(System.String)">
+ <summary>
+ Get the type of a specified file. Must be a file with a double dot extension where the middle keyword is a valid type. Throws InvalidCastException if this is not the case.
+ </summary>
+ <param name="path">The path to the file.</param>
+ <returns>The type or nothing if the type was not found.</returns>
+</member>
 <member name="F:DragonEngine.GameProperties.Instance">
  <summary>
  The single instance of the GameProperties class, so that PropertyGrid and JsonSerializer can reference an object.
@@ -31,6 +50,54 @@ DragonEngine
  <summary>
  Constructs a new GameProperties instance and overwrites the previous one.
  </summary>
+</member>
+<member name="M:DragonEngine.ISerialize.ToDisk(System.String)">
+ <summary>
+ Saves the object to disk.
+ </summary>
+ <param name="path">The file to save to.</param>
+</member>
+<member name="M:DragonEngine.ISerialize.FromDisk(System.String)">
+ <summary>
+ Loads the object from the specified file.
+ </summary>
+ <param name="path">The file to load from.</param>
+ <returns>The loaded ISerialize object.</returns>
+</member>
+<member name="M:DragonEngine.JsonData.WriteToFile``1(System.Object,System.String)">
+ <summary>
+ Saves an object in memory to disk for later use.
+ </summary>
+ <typeparam name="T">The object's type.</typeparam>
+ <param name="obj">The object to save to disk.</param>
+ <param name="path">The file to save the data to.</param>
+ <returns>The raw json data.</returns>
+</member>
+<member name="M:DragonEngine.JsonData.ReadFromFile``1(System.String)">
+ <summary>
+ Reads an object from disk into memory.
+ </summary>
+ <typeparam name="T">The object's type.</typeparam>
+ <param name="path">The file to read data from.</param>
+ <returns>The object read from the disk.</returns>
+</member>
+<member name="F:DragonEngine.Package.Files">
+ <summary>
+ The list of files in this package.
+ </summary>
+</member>
+<member name="M:DragonEngine.Package.WritePackage(System.String)">
+ <summary>
+ Writes this package to disk.
+ </summary>
+ <param name="path">The path to write to.</param>
+</member>
+<member name="M:DragonEngine.Package.ReadPackage(System.String)">
+ <summary>
+ Reads a package zip file and adds it to the working directory.
+ </summary>
+ <param name="path">The path to the package.</param>
+ <returns>A package object with the extracted files.</returns>
 </member>
 </members>
 </doc>

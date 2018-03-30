@@ -1,5 +1,7 @@
 ﻿Public Class ObjectBrowserWindow
     Public LargeIconList As New ImageList
+    Public SelectedObject As Object
+
     Private OpenObjs As New List(Of ObjWindow)
 
     Private Class ObjWindow
@@ -64,21 +66,21 @@
             ObjectView.Items.Add(item)
         Else
             Dim listIcon As IListIcon = TryCast(obj, IListIcon)
-            If Not New Text.RegularExpressions.Regex("\w\d+").Match(listIcon.Text).Success Then
+            If Not New Text.RegularExpressions.Regex("\w\d+").Match(listIcon.Name).Success Then
                 Dim count As Integer = 1
 
                 For Each elem As ListViewItem In ObjectView.Items
-                    If elem.Text.StartsWith(listIcon.Text) Then
+                    If elem.Text.StartsWith(listIcon.Name) Then
                         count += 1
                     End If
                 Next
 
                 If count > 1 Then
-                    listIcon.Text += count.ToString()
+                    listIcon.Name += count.ToString()
                 End If
             End If
 
-            Dim item As New ListViewItem(listIcon.Text) With {
+            Dim item As New ListViewItem(listIcon.Name) With {
                 .ImageKey = listIcon.GetIconName(),
                 .Tag = obj
             }
@@ -86,17 +88,26 @@
     End Sub
 
     Public Sub AddJsonFile(path As String)
-        Dim obj As JsonFileObject = JsonFileObject.FromJsonString(path)
-        AddObject(obj)
+        AddObject(ObjectLoader.ObjectFromDisk(path))
     End Sub
 
     Private Sub ObjectBrowserWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LargeIconList.ImageSize = New Size(64, 64)
         LargeIconList.Images.AddRange(IconList.Images.OfType(Of Image).ToArray())
+        ObjectView.LargeImageList = LargeIconList
     End Sub
 
     Private Sub ObjectView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ObjectView.SelectedIndexChanged
         If ObjectView.SelectedIndices.Count > 0 Then
-
+            SelectedObject = ObjectView.Items.Item(ObjectView.SelectedIndices.Item(0)).Tag
+            EditItemButton.Enabled = True
+        Else
+            SelectedObject = Nothing
+            EditItemButton.Enabled = False
         End If
+    End Sub
+
+    Private Sub EditItemButton_Click(sender As Object, e As EventArgs) Handles EditItemButton.Click
+        ShowObject(SelectedObject)
     End Sub
 End Class

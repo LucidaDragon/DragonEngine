@@ -46,11 +46,15 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DragonIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -80,6 +84,7 @@
       <DependentUpon>EditorWindow.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Engine.vb" />
     <Compile Include="GameProperties.vb" />
     <Compile Include="GameWindow.Designer.vb">
       <DependentUpon>GameWindow.vb</DependentUpon>
@@ -88,9 +93,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IListIcon.vb" />
+    <Compile Include="ISerialize.vb" />
     <Compile Include="ISpecialEditObject.vb" />
-    <Compile Include="JsonFileObject.vb" />
-    <Compile Include="JsonObject.vb" />
+    <Compile Include="JsonData.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -112,6 +117,8 @@
     <Compile Include="ObjectBrowserWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ObjectLoader.vb" />
+    <Compile Include="Package.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EditorWindow.resx">
@@ -141,6 +148,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DragonIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
