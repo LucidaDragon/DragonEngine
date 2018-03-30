@@ -47,7 +47,7 @@
 
     Public Function GetCurrentImage() As Bitmap Implements IDrawing.GetCurrentImage
         If Images.Count > 0 Then
-            CurrentFrame += Delay / (DateTime.Now - TimeSinceLastAnim).TotalMilliseconds
+            CurrentFrame += Delay / (DateTime.Now - TimeSinceLastAnim).TotalMilliseconds 'Find out why this isn't working.
             Return Images.Item(CurrentFrame).SelectedImage
         Else
             Return Nothing
