@@ -27,6 +27,11 @@ DragonEngine
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:DragonEngine.My.Resources.Resources.menuList">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:DragonEngine.My.Resources.Resources.plus">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

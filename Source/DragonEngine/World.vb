@@ -16,7 +16,7 @@
             Try
                 SelectedStaticMap = ObjectLookupTable.GetItem(Of Image)(value)
             Catch ex As Exception
-                MsgBox(ex.Message)
+                LogWindow.Log(ex.Message)
             End Try
         End Set
     End Property
@@ -35,7 +35,7 @@
             Try
                 SelectedAnimMap = ObjectLookupTable.GetItem(Of Animation)(value)
             Catch ex As Exception
-                MsgBox(ex.Message, MsgBoxStyle.Information, "Object Not Found")
+                LogWindow.Log(ex.Message)
             End Try
         End Set
     End Property

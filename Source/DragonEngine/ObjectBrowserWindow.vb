@@ -354,8 +354,9 @@
     End Sub
 
     Private Sub Engine_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs)
-        MsgBox("An error occured while the game was running:" & Environment.NewLine & TryCast(e.ExceptionObject, Exception).Message)
+        LogWindow.Log("An error occured while the game was running:" & Environment.NewLine & TryCast(e.ExceptionObject, Exception).Message)
         GameWindow.Close()
+        LogWindow.Show()
     End Sub
 
     Private Sub GameWindow_Closed(sender As Object, e As FormClosedEventArgs)
@@ -378,5 +379,10 @@
 
     Private Sub WorldToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WorldToolStripMenuItem.Click
         AddObjectWithDialog(New World)
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        LogWindow.Show()
+        LogWindow.BringToFront()
     End Sub
 End Class

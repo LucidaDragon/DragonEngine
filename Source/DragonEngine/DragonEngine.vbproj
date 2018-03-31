@@ -113,6 +113,12 @@
     <Compile Include="ITickable.vb" />
     <Compile Include="JsonData.vb" />
     <Compile Include="Keyboard.vb" />
+    <Compile Include="LogWindow.Designer.vb">
+      <DependentUpon>LogWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LogWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Messaging.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -164,6 +170,9 @@
     <EmbeddedResource Include="GameWindow.resx">
       <DependentUpon>GameWindow.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LogWindow.resx">
+      <DependentUpon>LogWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -194,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DragonIcon.ico" />
+    <None Include="Resources\menuList.png" />
     <None Include="Resources\cross.png" />
     <None Include="Resources\wrench.png" />
     <None Include="Resources\save.png" />

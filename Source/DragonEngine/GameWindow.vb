@@ -24,7 +24,8 @@
                 End If
             Next
         Catch ex As IO.FileNotFoundException
-            MsgBox("Error while loading level """ & name & """: " & ex.Message)
+            LogWindow.Log("Error while loading level """ & name & """: " & ex.Message)
+            LogWindow.Show()
         End Try
     End Sub
 

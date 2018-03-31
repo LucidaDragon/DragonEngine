@@ -14,10 +14,10 @@
             Dim dummyObj As ISerialize = FetchInstance(Engine.GetTypeOfFile(path))
             Return dummyObj.FromDisk(path)
         Catch ex As IO.FileNotFoundException
-            MsgBox("An error occured while loading """ & path & """: " & ex.Message)
+            LogWindow.Log("An error occured while loading """ & path & """: " & ex.Message)
             Return Nothing
         Catch ex As InvalidCastException
-            MsgBox("An error occured while loading """ & path & """: " & ex.Message)
+            LogWindow.Log("An error occured while loading """ & path & """: " & ex.Message)
             Return Nothing
         End Try
     End Function
