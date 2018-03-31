@@ -340,4 +340,16 @@
         RemoveHandler GameWindow.FormClosed, AddressOf GameWindow_Closed
         RemoveHandler Domain.UnhandledException, AddressOf Engine_UnhandledException
     End Sub
+
+    Private Sub ForceToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        AddObjectWithDialog(New Force)
+    End Sub
+
+    Private Sub GameObjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GameObjectToolStripMenuItem.Click
+        AddObjectWithDialog(New GameObject)
+    End Sub
+
+    Private Sub PhysicsObjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PhysicsObjectToolStripMenuItem.Click
+        AddObjectWithDialog(New PhysicsObject)
+    End Sub
 End Class

@@ -31,7 +31,6 @@ Partial Class ObjectBrowserWindow
         Me.SaveProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddItemDropDown = New System.Windows.Forms.ToolStripDropDownButton()
         Me.AnimationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ForceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ChangeViewButton = New System.Windows.Forms.ToolStripButton()
@@ -44,6 +43,9 @@ Partial Class ObjectBrowserWindow
         Me.LargeIconList = New System.Windows.Forms.ImageList(Me.components)
         Me.IconList = New System.Windows.Forms.ImageList(Me.components)
         Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.ObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GameObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PhysicsObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -87,7 +89,7 @@ Partial Class ObjectBrowserWindow
         '
         'AddItemDropDown
         '
-        Me.AddItemDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnimationToolStripMenuItem, Me.ForceToolStripMenuItem, Me.ImageToolStripMenuItem})
+        Me.AddItemDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnimationToolStripMenuItem, Me.ImageToolStripMenuItem, Me.ObjectToolStripMenuItem})
         Me.AddItemDropDown.Image = Global.DragonEngine.My.Resources.Resources.plus
         Me.AddItemDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddItemDropDown.Name = "AddItemDropDown"
@@ -97,19 +99,13 @@ Partial Class ObjectBrowserWindow
         'AnimationToolStripMenuItem
         '
         Me.AnimationToolStripMenuItem.Name = "AnimationToolStripMenuItem"
-        Me.AnimationToolStripMenuItem.Size = New System.Drawing.Size(153, 26)
+        Me.AnimationToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
         Me.AnimationToolStripMenuItem.Text = "Animation"
-        '
-        'ForceToolStripMenuItem
-        '
-        Me.ForceToolStripMenuItem.Name = "ForceToolStripMenuItem"
-        Me.ForceToolStripMenuItem.Size = New System.Drawing.Size(153, 26)
-        Me.ForceToolStripMenuItem.Text = "Force"
         '
         'ImageToolStripMenuItem
         '
         Me.ImageToolStripMenuItem.Name = "ImageToolStripMenuItem"
-        Me.ImageToolStripMenuItem.Size = New System.Drawing.Size(153, 26)
+        Me.ImageToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
         Me.ImageToolStripMenuItem.Text = "Image"
         '
         'ToolStripSeparator2
@@ -402,6 +398,25 @@ Partial Class ObjectBrowserWindow
         Me.Timer.Enabled = True
         Me.Timer.Interval = 3000
         '
+        'ObjectToolStripMenuItem
+        '
+        Me.ObjectToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GameObjectToolStripMenuItem, Me.PhysicsObjectToolStripMenuItem})
+        Me.ObjectToolStripMenuItem.Name = "ObjectToolStripMenuItem"
+        Me.ObjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.ObjectToolStripMenuItem.Text = "Object"
+        '
+        'GameObjectToolStripMenuItem
+        '
+        Me.GameObjectToolStripMenuItem.Name = "GameObjectToolStripMenuItem"
+        Me.GameObjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.GameObjectToolStripMenuItem.Text = "Game Object"
+        '
+        'PhysicsObjectToolStripMenuItem
+        '
+        Me.PhysicsObjectToolStripMenuItem.Name = "PhysicsObjectToolStripMenuItem"
+        Me.PhysicsObjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.PhysicsObjectToolStripMenuItem.Text = "Physics Object"
+        '
         'ObjectBrowserWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -438,6 +453,8 @@ Partial Class ObjectBrowserWindow
     Friend WithEvents PlayButton As ToolStripButton
     Friend WithEvents DeleteButton As ToolStripButton
     Friend WithEvents Timer As Timer
-    Friend WithEvents ForceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImageToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ObjectToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GameObjectToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PhysicsObjectToolStripMenuItem As ToolStripMenuItem
 End Class

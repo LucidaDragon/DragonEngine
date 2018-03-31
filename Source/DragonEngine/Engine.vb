@@ -73,6 +73,8 @@
         If createDeafultObjects Then
             GameProperties.Init()
             ObjectBrowserWindow.AddObject(GameProperties.Instance, True)
+            CameraControls.Init()
+            ObjectBrowserWindow.AddObject(CameraControls.Instance, True)
         End If
 
         Return True
@@ -88,8 +90,6 @@
     End Sub
 
     Public Class Graphics
-        Public Shared CameraPosition As New Point(0, 0)
-
         Public Shared DrawCalls As New List(Of DrawCall)
 
         Public Shared Sub SortZ()
@@ -98,19 +98,22 @@
 
         Public Shared Sub Draw(g As Drawing.Graphics, bounds As Rectangle)
             For Each drawCall In DrawCalls
-                g.DrawImage(drawCall.Sprite, CameraPosition.X - drawCall.Location.X, CameraPosition.Y - drawCall.Location.Y, drawCall.Size.Width, drawCall.Size.Height)
+                g.DrawImage(drawCall.Sprite, CameraControls.Instance.Position.X - drawCall.Location.X, CameraControls.Instance.Position.Y - drawCall.Location.Y, drawCall.Size.Width, drawCall.Size.Height)
             Next
         End Sub
 
         Public Class DrawCall
-            Public Property Location As Point
-            Public Property Size As Size
-            Public Property Sprite As Bitmap
-            Public Property DrawZ As Integer
+            Public Property Location As New Point
+            Public Property Size As New Size
+            Public Property Sprite As Bitmap = My.Resources.cross
+            Public Property DrawZ As Integer = 0
 
             Public Event Drawn(sender As Object, e As InvalidateEventArgs)
 
-            Sub New(location As Point, size As Size, sprite As Bitmap, Optional drawZ As Integer = 0)
+            Sub New()
+            End Sub
+
+            Sub New(location As Point, size As Size, sprite As Bitmap, drawZ As Integer)
                 Me.Location = location
                 Me.Size = size
                 Me.Sprite = sprite

@@ -84,6 +84,7 @@
     <Compile Include="AnimationDisplay.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="CameraControls.vb" />
     <Compile Include="EditorWindow.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +93,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Engine.vb" />
+    <Compile Include="Force.vb" />
+    <Compile Include="GameObject.vb" />
     <Compile Include="GameProperties.vb" />
     <Compile Include="GameWindow.Designer.vb">
       <DependentUpon>GameWindow.vb</DependentUpon>
@@ -105,7 +108,9 @@
     <Compile Include="INamedObject.vb" />
     <Compile Include="ISerialize.vb" />
     <Compile Include="ISpecialEditObject.vb" />
+    <Compile Include="ITickable.vb" />
     <Compile Include="JsonData.vb" />
+    <Compile Include="Keyboard.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -130,6 +135,7 @@
     <Compile Include="ObjectLoader.vb" />
     <Compile Include="ObjectLookupTable.vb" />
     <Compile Include="Package.vb" />
+    <Compile Include="PhysicsObject.vb" />
     <Compile Include="SpecialListViewItem.vb" />
     <Compile Include="TextInputBox.Designer.vb">
       <DependentUpon>TextInputBox.vb</DependentUpon>
@@ -137,6 +143,7 @@
     <Compile Include="TextInputBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Trigger.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AnimationDisplay.resx">
