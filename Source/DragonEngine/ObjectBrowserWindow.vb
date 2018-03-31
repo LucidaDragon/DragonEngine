@@ -3,6 +3,8 @@
     Public LastSaveLocation As String = Nothing
 
     Private OpenObjs As New List(Of ObjWindow)
+    Private DeleteBlacklist As New List(Of Object)
+    Private WithEvents Domain As AppDomain = AppDomain.CurrentDomain
 
     Private Class ObjWindow
         Public WithEvents Form As Form
@@ -82,7 +84,16 @@
     ''' Adds an object to the ObjectView.
     ''' </summary>
     ''' <param name="obj">The object to add.</param>
-    Public Sub AddObject(obj As Object)
+    Public Sub AddObject(obj As Object, Optional permanent As Boolean = False)
+        If TryCast(obj, INamedObject) IsNot Nothing Then
+            ObjectLookupTable.Add(obj)
+            ObjectLookupTable.Refresh()
+        End If
+
+        If permanent Then
+            DeleteBlacklist.Add(obj)
+        End If
+
         If TryCast(obj, IListIcon) Is Nothing Then
             Dim count As Integer = 1
             For Each elem As ListViewItem In ObjectView.Items
@@ -130,7 +141,7 @@
     ''' </summary>
     ''' <param name="path">The json file path.</param>
     Public Sub AddJsonFile(path As String)
-        AddObject(ObjectLoader.ObjectFromDisk(path))
+        AddObject(ObjectLoader.ObjectFromDisk(path), IO.Path.GetFileName(path).StartsWith("Engine."))
     End Sub
 
     ''' <summary>
@@ -166,14 +177,31 @@
     ''' <returns>The file name.</returns>
     Public Function GetItemFileName(item As ListViewItem) As String
         Dim obj As ISerialize = TryCast(item.Tag, ISerialize)
+
+        Dim perma As Boolean = False
+        For Each elem In DeleteBlacklist
+            If elem.Equals(item.Tag) Then
+                perma = True
+                Exit For
+            End If
+        Next
+
         If obj Is Nothing Then
             Return item.Text & "." & item.Tag.GetType().Name & ".json"
         Else
-            Return item.Text & "." & obj.GetType().Name & ".json"
+            If perma Then
+                Return "Engine." & item.Text & "." & obj.GetType().Name & ".json"
+            Else
+                Return item.Text & "." & obj.GetType().Name & ".json"
+            End If
         End If
     End Function
 
-    Public Sub AddObjectWithDialog(obj As IListIcon)
+    ''' <summary>
+    ''' Add an object and display a dialog to set it's name.
+    ''' </summary>
+    ''' <param name="obj">The object to rename.</param>
+    Public Sub AddObjectWithDialog(obj As INamedObject)
         Dim dia As New TextInputBox("Enter Item Name")
         If dia.ShowDialog() = DialogResult.OK Then
             obj.Name = dia.Text
@@ -191,7 +219,9 @@
         If ObjectView.SelectedIndices.Count > 0 Then
             SelectedObject = ObjectView.Items.Item(ObjectView.SelectedIndices.Item(0)).Tag
             EditItemButton.Enabled = True
-            DeleteButton.Enabled = True
+            If Not DeleteBlacklist.Contains(SelectedObject) Then
+                DeleteButton.Enabled = True
+            End If
         Else
             SelectedObject = Nothing
             EditItemButton.Enabled = False
@@ -243,10 +273,11 @@
         Dim dia As New OpenFileDialog With {
             .Title = "Save As",
             .DefaultExt = "dpak",
-            .Filter = "*.dpak|Dragon Engine Package"
+            .Filter = "Dragon Engine Package|*.dpak"
         }
 
         If dia.ShowDialog() = DialogResult.OK Then
+            DeleteBlacklist.Clear()
             Engine.OpenProject(dia.FileName)
             LastSaveLocation = dia.FileName
         End If
@@ -261,6 +292,10 @@
         If IO.File.Exists(Engine.EditorWorkingFolder & "\" & GetItemFileName(item)) Then
             IO.File.Delete(Engine.EditorWorkingFolder & "\" & GetItemFileName(item))
         End If
+        If TryCast(item.Tag, INamedObject) IsNot Nothing Then
+            ObjectLookupTable.Remove(TryCast(item.Tag, INamedObject).Name)
+            ObjectLookupTable.Refresh()
+        End If
         ObjectView.Items.Remove(item)
     End Sub
 
@@ -271,5 +306,38 @@
         AutoSave(False)
 
         Timer.Interval = ((DateTime.Now - beginEval).TotalMilliseconds * 4) + 3000
+    End Sub
+
+    Private Sub ImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageToolStripMenuItem.Click
+        Dim dia As New OpenFileDialog With {
+            .DefaultExt = "png",
+            .Filter = "Image Files|*.jpg;*.gif;*.png;*.bmp"
+        }
+
+        If dia.ShowDialog() = DialogResult.OK Then
+            Dim img As New Image With {
+                .Name = IO.Path.GetFileNameWithoutExtension(dia.FileName),
+                .SelectedImage = New Bitmap(dia.FileName)
+            }
+            AddObject(img)
+        End If
+    End Sub
+
+    Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
+        Enabled = False
+        AddHandler Domain.UnhandledException, AddressOf Engine_UnhandledException
+        GameWindow.Show()
+        AddHandler GameWindow.FormClosed, AddressOf GameWindow_Closed
+    End Sub
+
+    Private Sub Engine_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs)
+        MsgBox("An error occured while the game was running:" & Environment.NewLine & TryCast(e.ExceptionObject, Exception).Message)
+        GameWindow.Close()
+    End Sub
+
+    Private Sub GameWindow_Closed(sender As Object, e As FormClosedEventArgs)
+        Enabled = True
+        RemoveHandler GameWindow.FormClosed, AddressOf GameWindow_Closed
+        RemoveHandler Domain.UnhandledException, AddressOf Engine_UnhandledException
     End Sub
 End Class

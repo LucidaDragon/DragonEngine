@@ -3,10 +3,6 @@
     ''' The working folder for the currently open project.
     ''' </summary>
     Public Shared ReadOnly EditorWorkingFolder As String = Application.StartupPath & "\ProjectCache"
-    ''' <summary>
-    ''' The path to the GameProperties instanced when saved to disk.
-    ''' </summary>
-    Public Shared ReadOnly GamePropertiesPath As String = EditorWorkingFolder & "\Settings.GameProperties.json"
 
     ''' <summary>
     ''' The currently loaded package.
@@ -76,9 +72,7 @@
 
         If createDeafultObjects Then
             GameProperties.Init()
-            GameProperties.Instance.ToDisk(GamePropertiesPath)
-            Package.Files.Add(GamePropertiesPath)
-            ObjectBrowserWindow.AddObject(GameProperties.Instance)
+            ObjectBrowserWindow.AddObject(GameProperties.Instance, True)
         End If
 
         Return True

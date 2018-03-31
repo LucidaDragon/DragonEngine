@@ -60,6 +60,7 @@ Partial Class EditorWindow
         Me.Controls.Add(Me.SplitDesigner)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "EditorWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dragon Engine Editor"
         Me.SplitDesigner.Panel1.ResumeLayout(False)
         CType(Me.SplitDesigner, System.ComponentModel.ISupportInitialize).EndInit()

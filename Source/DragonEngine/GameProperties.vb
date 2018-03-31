@@ -7,10 +7,20 @@
     ''' </summary>
     Public Shared Instance As GameProperties
 
-    Public Property GameIcon As Image
+    Public Property GameIcon As String
     Public Property GameName As String
     Public Property GameVersion As String = "1.0.0"
     Public Property GameAuthor As String = Environment.UserName
+
+    Public Property WindowSize As New Size(600, 800)
+
+    Public Property ViewportStyle As ViewportType = 0
+    Public Enum ViewportType
+        Window = 0
+        Borderless = 1
+        FullscreenWindow = 2
+        FullscreenBorderless = 3
+    End Enum
 
     ''' <summary>
     ''' Constructs a new GameProperties instance and overwrites the previous one.

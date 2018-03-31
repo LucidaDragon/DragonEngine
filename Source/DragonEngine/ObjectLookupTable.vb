@@ -30,13 +30,25 @@
         Next
     End Sub
 
-    Public Shared Function GetItem(name As String) As INamedObject
+    Public Shared Function GetNamedItem(name As String) As INamedObject
         For Each elem In Objects
             If elem.Name = name Then
                 Return elem.Obj
             End If
         Next
         Return Nothing
+    End Function
+
+    Public Shared Function GetItem(Of T)(name As String) As T
+        For Each elem In Objects
+            If elem.Name = name Then
+                Try
+                    Return elem.Obj
+                Catch
+                End Try
+            End If
+        Next
+        Throw New IO.FileNotFoundException(GetType(T).Name & " with name """ & name & """ was not found.")
     End Function
 
     Public Class ObjectLookup

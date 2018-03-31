@@ -69,11 +69,6 @@ DragonEngine
  The working folder for the currently open project.
  </summary>
 </member>
-<member name="F:DragonEngine.Engine.GamePropertiesPath">
- <summary>
- The path to the GameProperties instanced when saved to disk.
- </summary>
-</member>
 <member name="F:DragonEngine.Engine.Package">
  <summary>
  The currently loaded package.
@@ -176,7 +171,7 @@ DragonEngine
  </summary>
  <param name="obj">The object to show.</param>
 </member>
-<member name="M:DragonEngine.ObjectBrowserWindow.AddObject(System.Object)">
+<member name="M:DragonEngine.ObjectBrowserWindow.AddObject(System.Object,System.Boolean)">
  <summary>
  Adds an object to the ObjectView.
  </summary>
@@ -201,6 +196,12 @@ DragonEngine
  </summary>
  <param name="item">The item to get the file name for.</param>
  <returns>The file name.</returns>
+</member>
+<member name="M:DragonEngine.ObjectBrowserWindow.AddObjectWithDialog(DragonEngine.INamedObject)">
+ <summary>
+ Add an object and display a dialog to set it's name.
+ </summary>
+ <param name="obj">The object to rename.</param>
 </member>
 <member name="F:DragonEngine.Package.Files">
  <summary>

@@ -64,6 +64,7 @@ Partial Class TextInputBox
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "TextInputBox"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Input Text"
         Me.ResumeLayout(False)
         Me.PerformLayout()

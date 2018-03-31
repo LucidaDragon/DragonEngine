@@ -25,22 +25,24 @@ Partial Class ObjectBrowserWindow
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ObjectBrowserWindow))
         Me.MenuStrip = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ObjectView = New System.Windows.Forms.ListView()
-        Me.LargeIconList = New System.Windows.Forms.ImageList(Me.components)
-        Me.IconList = New System.Windows.Forms.ImageList(Me.components)
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.FileDropDown = New System.Windows.Forms.ToolStripDropDownButton()
         Me.NewProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddItemDropDown = New System.Windows.Forms.ToolStripDropDownButton()
         Me.AnimationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ForceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ChangeViewButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EditItemButton = New System.Windows.Forms.ToolStripButton()
         Me.DeleteButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.PlayButton = New System.Windows.Forms.ToolStripButton()
+        Me.ObjectView = New System.Windows.Forms.ListView()
+        Me.LargeIconList = New System.Windows.Forms.ImageList(Me.components)
+        Me.IconList = New System.Windows.Forms.ImageList(Me.components)
         Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -56,15 +58,108 @@ Partial Class ObjectBrowserWindow
         Me.MenuStrip.TabIndex = 0
         Me.MenuStrip.Text = "ToolStrip1"
         '
+        'FileDropDown
+        '
+        Me.FileDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewProjectToolStripMenuItem, Me.OpenProjectToolStripMenuItem, Me.SaveProjectToolStripMenuItem})
+        Me.FileDropDown.Image = Global.DragonEngine.My.Resources.Resources.save
+        Me.FileDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.FileDropDown.Name = "FileDropDown"
+        Me.FileDropDown.Size = New System.Drawing.Size(66, 24)
+        Me.FileDropDown.Text = "File"
+        '
+        'NewProjectToolStripMenuItem
+        '
+        Me.NewProjectToolStripMenuItem.Name = "NewProjectToolStripMenuItem"
+        Me.NewProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
+        Me.NewProjectToolStripMenuItem.Text = "New Project"
+        '
+        'OpenProjectToolStripMenuItem
+        '
+        Me.OpenProjectToolStripMenuItem.Name = "OpenProjectToolStripMenuItem"
+        Me.OpenProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
+        Me.OpenProjectToolStripMenuItem.Text = "Open Project"
+        '
+        'SaveProjectToolStripMenuItem
+        '
+        Me.SaveProjectToolStripMenuItem.Name = "SaveProjectToolStripMenuItem"
+        Me.SaveProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
+        Me.SaveProjectToolStripMenuItem.Text = "Save Project"
+        '
+        'AddItemDropDown
+        '
+        Me.AddItemDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnimationToolStripMenuItem, Me.ForceToolStripMenuItem, Me.ImageToolStripMenuItem})
+        Me.AddItemDropDown.Image = Global.DragonEngine.My.Resources.Resources.plus
+        Me.AddItemDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.AddItemDropDown.Name = "AddItemDropDown"
+        Me.AddItemDropDown.Size = New System.Drawing.Size(71, 24)
+        Me.AddItemDropDown.Text = "Add"
+        '
+        'AnimationToolStripMenuItem
+        '
+        Me.AnimationToolStripMenuItem.Name = "AnimationToolStripMenuItem"
+        Me.AnimationToolStripMenuItem.Size = New System.Drawing.Size(153, 26)
+        Me.AnimationToolStripMenuItem.Text = "Animation"
+        '
+        'ForceToolStripMenuItem
+        '
+        Me.ForceToolStripMenuItem.Name = "ForceToolStripMenuItem"
+        Me.ForceToolStripMenuItem.Size = New System.Drawing.Size(153, 26)
+        Me.ForceToolStripMenuItem.Text = "Force"
+        '
+        'ImageToolStripMenuItem
+        '
+        Me.ImageToolStripMenuItem.Name = "ImageToolStripMenuItem"
+        Me.ImageToolStripMenuItem.Size = New System.Drawing.Size(153, 26)
+        Me.ImageToolStripMenuItem.Text = "Image"
+        '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 27)
         '
+        'ChangeViewButton
+        '
+        Me.ChangeViewButton.Image = Global.DragonEngine.My.Resources.Resources.zoomDefault
+        Me.ChangeViewButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ChangeViewButton.Name = "ChangeViewButton"
+        Me.ChangeViewButton.Size = New System.Drawing.Size(119, 24)
+        Me.ChangeViewButton.Text = "Change View"
+        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
+        '
+        'EditItemButton
+        '
+        Me.EditItemButton.Enabled = False
+        Me.EditItemButton.Image = Global.DragonEngine.My.Resources.Resources.wrench
+        Me.EditItemButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.EditItemButton.Name = "EditItemButton"
+        Me.EditItemButton.Size = New System.Drawing.Size(59, 24)
+        Me.EditItemButton.Text = "Edit"
+        '
+        'DeleteButton
+        '
+        Me.DeleteButton.Enabled = False
+        Me.DeleteButton.Image = Global.DragonEngine.My.Resources.Resources.cross
+        Me.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.DeleteButton.Name = "DeleteButton"
+        Me.DeleteButton.Size = New System.Drawing.Size(77, 24)
+        Me.DeleteButton.Text = "Delete"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 27)
+        '
+        'PlayButton
+        '
+        Me.PlayButton.Image = Global.DragonEngine.My.Resources.Resources.right
+        Me.PlayButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.PlayButton.Name = "PlayButton"
+        Me.PlayButton.Size = New System.Drawing.Size(60, 24)
+        Me.PlayButton.Text = "Play"
         '
         'ObjectView
         '
@@ -302,87 +397,6 @@ Partial Class ObjectBrowserWindow
         Me.IconList.Images.SetKeyName(105, "zoomIn.png")
         Me.IconList.Images.SetKeyName(106, "zoomOut.png")
         '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 27)
-        '
-        'FileDropDown
-        '
-        Me.FileDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewProjectToolStripMenuItem, Me.OpenProjectToolStripMenuItem, Me.SaveProjectToolStripMenuItem})
-        Me.FileDropDown.Image = Global.DragonEngine.My.Resources.Resources.save
-        Me.FileDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.FileDropDown.Name = "FileDropDown"
-        Me.FileDropDown.Size = New System.Drawing.Size(66, 24)
-        Me.FileDropDown.Text = "File"
-        '
-        'NewProjectToolStripMenuItem
-        '
-        Me.NewProjectToolStripMenuItem.Name = "NewProjectToolStripMenuItem"
-        Me.NewProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
-        Me.NewProjectToolStripMenuItem.Text = "New Project"
-        '
-        'OpenProjectToolStripMenuItem
-        '
-        Me.OpenProjectToolStripMenuItem.Name = "OpenProjectToolStripMenuItem"
-        Me.OpenProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
-        Me.OpenProjectToolStripMenuItem.Text = "Open Project"
-        '
-        'SaveProjectToolStripMenuItem
-        '
-        Me.SaveProjectToolStripMenuItem.Name = "SaveProjectToolStripMenuItem"
-        Me.SaveProjectToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
-        Me.SaveProjectToolStripMenuItem.Text = "Save Project"
-        '
-        'AddItemDropDown
-        '
-        Me.AddItemDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnimationToolStripMenuItem})
-        Me.AddItemDropDown.Image = Global.DragonEngine.My.Resources.Resources.plus
-        Me.AddItemDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.AddItemDropDown.Name = "AddItemDropDown"
-        Me.AddItemDropDown.Size = New System.Drawing.Size(71, 24)
-        Me.AddItemDropDown.Text = "Add"
-        '
-        'AnimationToolStripMenuItem
-        '
-        Me.AnimationToolStripMenuItem.Name = "AnimationToolStripMenuItem"
-        Me.AnimationToolStripMenuItem.Size = New System.Drawing.Size(153, 26)
-        Me.AnimationToolStripMenuItem.Text = "Animation"
-        '
-        'ChangeViewButton
-        '
-        Me.ChangeViewButton.Image = Global.DragonEngine.My.Resources.Resources.zoomDefault
-        Me.ChangeViewButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ChangeViewButton.Name = "ChangeViewButton"
-        Me.ChangeViewButton.Size = New System.Drawing.Size(119, 24)
-        Me.ChangeViewButton.Text = "Change View"
-        '
-        'EditItemButton
-        '
-        Me.EditItemButton.Enabled = False
-        Me.EditItemButton.Image = Global.DragonEngine.My.Resources.Resources.wrench
-        Me.EditItemButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.EditItemButton.Name = "EditItemButton"
-        Me.EditItemButton.Size = New System.Drawing.Size(59, 24)
-        Me.EditItemButton.Text = "Edit"
-        '
-        'DeleteButton
-        '
-        Me.DeleteButton.Enabled = False
-        Me.DeleteButton.Image = Global.DragonEngine.My.Resources.Resources.cross
-        Me.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.DeleteButton.Name = "DeleteButton"
-        Me.DeleteButton.Size = New System.Drawing.Size(77, 24)
-        Me.DeleteButton.Text = "Delete"
-        '
-        'PlayButton
-        '
-        Me.PlayButton.Image = Global.DragonEngine.My.Resources.Resources.right
-        Me.PlayButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PlayButton.Name = "PlayButton"
-        Me.PlayButton.Size = New System.Drawing.Size(60, 24)
-        Me.PlayButton.Text = "Play"
-        '
         'Timer
         '
         Me.Timer.Enabled = True
@@ -397,6 +411,7 @@ Partial Class ObjectBrowserWindow
         Me.Controls.Add(Me.MenuStrip)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ObjectBrowserWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dragon Engine Object Browser"
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
@@ -423,4 +438,6 @@ Partial Class ObjectBrowserWindow
     Friend WithEvents PlayButton As ToolStripButton
     Friend WithEvents DeleteButton As ToolStripButton
     Friend WithEvents Timer As Timer
+    Friend WithEvents ForceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ImageToolStripMenuItem As ToolStripMenuItem
 End Class

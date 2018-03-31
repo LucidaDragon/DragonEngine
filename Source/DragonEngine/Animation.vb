@@ -23,7 +23,7 @@
             Return FrameIndex
         End Get
         Set(value As Integer)
-            While value > Images.Count
+            While value > Images.Count - 1
                 value -= Images.Count
             End While
             While value < 0
@@ -47,8 +47,12 @@
 
     Public Function GetCurrentImage() As Bitmap Implements IDrawing.GetCurrentImage
         If Images.Count > 0 Then
-            CurrentFrame += Delay / (DateTime.Now - TimeSinceLastAnim).TotalMilliseconds 'Find out why this isn't working.
-            Return Images.Item(CurrentFrame).SelectedImage
+            CurrentFrame += Delay / (DateTime.Now - TimeSinceLastAnim).TotalMilliseconds + 1
+            If Images.Item(CurrentFrame).SelectedImage IsNot Nothing Then
+                Return Images.Item(CurrentFrame).SelectedImage
+            Else
+                Return Nothing
+            End If
         Else
             Return Nothing
         End If
