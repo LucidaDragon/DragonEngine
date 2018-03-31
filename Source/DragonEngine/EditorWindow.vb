@@ -79,6 +79,10 @@ Public Class EditorWindow
     End Sub
 
     Private Sub EditorWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If SubForm IsNot Nothing Then
+            SubForm.Close()
+        End If
+
         SubForm = Nothing
         SplitDesigner.Panel2.Controls.Clear()
         ObjectPropertyGrid.SelectedObject = Nothing

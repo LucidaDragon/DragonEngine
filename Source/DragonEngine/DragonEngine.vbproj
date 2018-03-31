@@ -144,6 +144,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Trigger.vb" />
+    <Compile Include="World.vb" />
+    <Compile Include="WorldDisplay.Designer.vb">
+      <DependentUpon>WorldDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WorldDisplay.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AnimationDisplay.resx">
@@ -166,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TextInputBox.resx">
       <DependentUpon>TextInputBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorldDisplay.resx">
+      <DependentUpon>WorldDisplay.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

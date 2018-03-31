@@ -32,6 +32,9 @@ Partial Class ObjectBrowserWindow
         Me.AddItemDropDown = New System.Windows.Forms.ToolStripDropDownButton()
         Me.AnimationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GameObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PhysicsObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ChangeViewButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -43,9 +46,7 @@ Partial Class ObjectBrowserWindow
         Me.LargeIconList = New System.Windows.Forms.ImageList(Me.components)
         Me.IconList = New System.Windows.Forms.ImageList(Me.components)
         Me.Timer = New System.Windows.Forms.Timer(Me.components)
-        Me.ObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GameObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PhysicsObjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WorldToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -89,7 +90,7 @@ Partial Class ObjectBrowserWindow
         '
         'AddItemDropDown
         '
-        Me.AddItemDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnimationToolStripMenuItem, Me.ImageToolStripMenuItem, Me.ObjectToolStripMenuItem})
+        Me.AddItemDropDown.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnimationToolStripMenuItem, Me.ImageToolStripMenuItem, Me.ObjectToolStripMenuItem, Me.WorldToolStripMenuItem})
         Me.AddItemDropDown.Image = Global.DragonEngine.My.Resources.Resources.plus
         Me.AddItemDropDown.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddItemDropDown.Name = "AddItemDropDown"
@@ -107,6 +108,25 @@ Partial Class ObjectBrowserWindow
         Me.ImageToolStripMenuItem.Name = "ImageToolStripMenuItem"
         Me.ImageToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
         Me.ImageToolStripMenuItem.Text = "Image"
+        '
+        'ObjectToolStripMenuItem
+        '
+        Me.ObjectToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GameObjectToolStripMenuItem, Me.PhysicsObjectToolStripMenuItem})
+        Me.ObjectToolStripMenuItem.Name = "ObjectToolStripMenuItem"
+        Me.ObjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.ObjectToolStripMenuItem.Text = "Object"
+        '
+        'GameObjectToolStripMenuItem
+        '
+        Me.GameObjectToolStripMenuItem.Name = "GameObjectToolStripMenuItem"
+        Me.GameObjectToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.GameObjectToolStripMenuItem.Text = "Game Object"
+        '
+        'PhysicsObjectToolStripMenuItem
+        '
+        Me.PhysicsObjectToolStripMenuItem.Name = "PhysicsObjectToolStripMenuItem"
+        Me.PhysicsObjectToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.PhysicsObjectToolStripMenuItem.Text = "Physics Object"
         '
         'ToolStripSeparator2
         '
@@ -398,24 +418,11 @@ Partial Class ObjectBrowserWindow
         Me.Timer.Enabled = True
         Me.Timer.Interval = 3000
         '
-        'ObjectToolStripMenuItem
+        'WorldToolStripMenuItem
         '
-        Me.ObjectToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GameObjectToolStripMenuItem, Me.PhysicsObjectToolStripMenuItem})
-        Me.ObjectToolStripMenuItem.Name = "ObjectToolStripMenuItem"
-        Me.ObjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
-        Me.ObjectToolStripMenuItem.Text = "Object"
-        '
-        'GameObjectToolStripMenuItem
-        '
-        Me.GameObjectToolStripMenuItem.Name = "GameObjectToolStripMenuItem"
-        Me.GameObjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
-        Me.GameObjectToolStripMenuItem.Text = "Game Object"
-        '
-        'PhysicsObjectToolStripMenuItem
-        '
-        Me.PhysicsObjectToolStripMenuItem.Name = "PhysicsObjectToolStripMenuItem"
-        Me.PhysicsObjectToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
-        Me.PhysicsObjectToolStripMenuItem.Text = "Physics Object"
+        Me.WorldToolStripMenuItem.Name = "WorldToolStripMenuItem"
+        Me.WorldToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.WorldToolStripMenuItem.Text = "World"
         '
         'ObjectBrowserWindow
         '
@@ -457,4 +464,5 @@ Partial Class ObjectBrowserWindow
     Friend WithEvents ObjectToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GameObjectToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PhysicsObjectToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WorldToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -162,6 +162,13 @@
 
         GC.Collect()
 
+        For Each item In ObjectView.Items
+            Dim obj As INamedObject = TryCast(item.Tag, INamedObject)
+            If obj IsNot Nothing Then
+                item.Text = obj.Name
+            End If
+        Next
+
         If IO.File.Exists(LastSaveLocation) And sendToPackage Then
             Engine.Package.WritePackage(LastSaveLocation)
             GC.Collect()
@@ -252,6 +259,11 @@
     End Sub
 
     Private Sub ObjectBrowserWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        CleanUpObjects()
+        If OpenObjs.Count > 0 Then
+            e.Cancel = True
+        End If
+
         If Not Engine.NewProject(True, False) Then
             e.Cancel = True
         End If
@@ -351,5 +363,9 @@
 
     Private Sub PhysicsObjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PhysicsObjectToolStripMenuItem.Click
         AddObjectWithDialog(New PhysicsObject)
+    End Sub
+
+    Private Sub WorldToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WorldToolStripMenuItem.Click
+        AddObjectWithDialog(New World)
     End Sub
 End Class

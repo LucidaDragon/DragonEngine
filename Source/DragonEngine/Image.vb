@@ -35,12 +35,11 @@
     Private Cache As Bitmap
 
     Public Sub ToDisk(path As String) Implements ISerialize.ToDisk
-        IO.File.WriteAllText(path, BitmapData)
+        JsonData.WriteToFile(Of Image)(Me, path)
     End Sub
 
     Public Function FromDisk(path As String) As ISerialize Implements ISerialize.FromDisk
-        BitmapData = IO.File.ReadAllText(path)
-        Return Me
+        Return JsonData.ReadFromFile(Of Image)(path)
     End Function
 
     Public Function GetCurrentImage() As Bitmap Implements IDrawing.GetCurrentImage

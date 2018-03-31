@@ -16,26 +16,26 @@
     ''' <returns>Delay in milliseconds.</returns>
     Public Property Delay As Integer = 1000
 
-    Private TimeSinceLastAnim As DateTime = DateTime.Now
+    Private BeginAnim As DateTime = DateTime.Now
 
-    Private Property CurrentFrame As Integer
+    Private Property CurrentFrame As Double
         Get
             Return FrameIndex
         End Get
-        Set(value As Integer)
-            While value > Images.Count - 1
-                value -= Images.Count
-            End While
-            While value < 0
-                value += Images.Count
-            End While
+        Set(value As Double)
+            If value > Images.Count - 1 Then
+                value = 0
+            ElseIf value < 0 Then
+                value = Images.Count - 1
+            End If
+
             FrameIndex = value
         End Set
     End Property
 
     Public Property Name As String Implements IListIcon.Name
 
-    Private FrameIndex As Integer = 0
+    Private FrameIndex As Double = 0
 
     Public Sub ToDisk(path As String) Implements ISerialize.ToDisk
         JsonData.WriteToFile(Of Animation)(Me, path)
@@ -47,7 +47,7 @@
 
     Public Function GetCurrentImage() As Bitmap Implements IDrawing.GetCurrentImage
         If Images.Count > 0 Then
-            CurrentFrame += Delay / (DateTime.Now - TimeSinceLastAnim).TotalMilliseconds + 1
+            CurrentFrame += (DateTime.Now - BeginAnim).TotalMilliseconds / Delay
             If Images.Item(CurrentFrame).SelectedImage IsNot Nothing Then
                 Return Images.Item(CurrentFrame).SelectedImage
             Else
