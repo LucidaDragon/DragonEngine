@@ -21,7 +21,7 @@
         Dim pkg As New Package
         IO.Compression.ZipFile.ExtractToDirectory(path, Engine.EditorWorkingFolder)
         For Each file In IO.Directory.GetFiles(Engine.EditorWorkingFolder)
-            If IO.Path.GetFileName(file).EndsWith(".json") And IO.Path.GetFileName(file).Split(".").Length = 3 Then
+            If IO.Path.GetFileName(file).EndsWith(".json") And IO.Path.GetFileName(file).Split(".").Length >= 3 Then
                 pkg.Files.Add(file)
             End If
         Next

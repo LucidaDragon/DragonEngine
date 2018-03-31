@@ -16,19 +16,28 @@
     ''' <returns>The type or nothing if it was not found.</returns>
     Public Shared Function FindType(ByVal name As String) As Type
         Dim base As Type
+        Reflection.Assembly.Load(Reflection.Assembly.GetEntryAssembly().GetName().Name)
 
-        base = Reflection.Assembly.GetEntryAssembly.GetType(name, False, True)
-        If base IsNot Nothing Then Return base
-
-        base = Reflection.Assembly.GetExecutingAssembly.GetType(name, False, True)
-        If base IsNot Nothing Then Return base
-
-        For Each assembly As Reflection.Assembly In
-          AppDomain.CurrentDomain.GetAssemblies
-            base = assembly.GetType(name, False, True)
+        Try
+            base = Reflection.Assembly.GetEntryAssembly().GetType(Reflection.Assembly.GetEntryAssembly().GetName().Name & "." & name, True, True)
             If base IsNot Nothing Then Return base
+        Catch ex As Exception
+        End Try
+
+        Try
+            base = Reflection.Assembly.GetExecutingAssembly().GetType(Reflection.Assembly.GetExecutingAssembly().GetName().Name & "." & name, True, True)
+            If base IsNot Nothing Then Return base
+        Catch ex As Exception
+        End Try
+
+        For Each assembly As Reflection.Assembly In AppDomain.CurrentDomain.GetAssemblies
+            Try
+                base = assembly.GetType(assembly.GetName().Name & "." & name, True, True)
+                If base IsNot Nothing Then Return base
+            Catch ex As Exception
+            End Try
         Next
-        Return Nothing
+        Throw New IO.FileNotFoundException("Class type of """ & name & """ was not found.")
     End Function
 
     ''' <summary>
@@ -38,8 +47,8 @@
     ''' <returns>The type or nothing if the type was not found.</returns>
     Public Shared Function GetTypeOfFile(path As String) As Type
         Dim file As String = IO.Path.GetFileName(path)
-        If file.Split(".").Length = 3 Then
-            Return FindType(file.Split(".").ElementAt(1))
+        If file.Split(".").Length >= 3 Then
+            Return FindType(file.Split(".").ElementAt(file.Split(".").Length - 2))
         Else
             Throw New InvalidCastException(file)
         End If
@@ -86,8 +95,15 @@
     ''' <param name="path">The package to load from.</param>
     Public Shared Sub OpenProject(path As String)
         NewProject(True, False)
-        Package.ReadPackage(path)
+        For Each file In Package.ReadPackage(path).Files
+            ObjectBrowserWindow.AddJsonFile(file)
+        Next
     End Sub
+
+    Public Class Collision
+        Public Shared StaticCollision As New List(Of Rectangle)
+        Public Shared DynamicCollision As New List(Of ICollision)
+    End Class
 
     Public Class Graphics
         Public Shared DrawCalls As New List(Of DrawCall)

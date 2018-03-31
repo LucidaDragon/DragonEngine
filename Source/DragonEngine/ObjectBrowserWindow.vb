@@ -85,9 +85,20 @@
     ''' </summary>
     ''' <param name="obj">The object to add.</param>
     Public Sub AddObject(obj As Object, Optional permanent As Boolean = False)
+        If obj Is Nothing Then
+            Exit Sub
+        End If
+
         If TryCast(obj, INamedObject) IsNot Nothing Then
-            ObjectLookupTable.Add(obj)
-            ObjectLookupTable.Refresh()
+            Dim named As INamedObject = TryCast(obj, INamedObject)
+            If ObjectLookupTable.GetNamedItem(named.Name) Is Nothing Then
+                ObjectLookupTable.Add(named)
+                ObjectLookupTable.Refresh()
+            Else
+                ObjectLookupTable.Remove(named.Name)
+                ObjectLookupTable.Add(named)
+                ObjectLookupTable.Refresh()
+            End If
         End If
 
         If permanent Then
@@ -141,7 +152,7 @@
     ''' </summary>
     ''' <param name="path">The json file path.</param>
     Public Sub AddJsonFile(path As String)
-        AddObject(ObjectLoader.ObjectFromDisk(path), IO.Path.GetFileName(path).StartsWith("Engine."))
+        AddObject(JsonData.ObjectFromDisk(path), IO.Path.GetFileName(path).StartsWith("Engine."))
     End Sub
 
     ''' <summary>
@@ -162,11 +173,8 @@
 
         GC.Collect()
 
-        For Each item In ObjectView.Items
-            Dim obj As INamedObject = TryCast(item.Tag, INamedObject)
-            If obj IsNot Nothing Then
-                item.Text = obj.Name
-            End If
+        For Each item As SpecialListViewItem In ObjectView.Items
+            item.Refresh()
         Next
 
         If IO.File.Exists(LastSaveLocation) And sendToPackage Then
@@ -241,6 +249,7 @@
     End Sub
 
     Private Sub SaveProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveProjectToolStripMenuItem.Click
+        Timer.Stop()
         If Not AutoSave(True) Then
             Dim dia As New SaveFileDialog With {
                 .Title = "Save As",
@@ -250,12 +259,11 @@
             }
 
             If dia.ShowDialog() = DialogResult.OK Then
-                Timer.Stop()
                 Engine.Package.WritePackage(dia.FileName)
-                Timer.Start()
                 LastSaveLocation = dia.FileName
             End If
         End If
+        Timer.Start()
     End Sub
 
     Private Sub ObjectBrowserWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -282,6 +290,7 @@
     End Sub
 
     Private Sub OpenProjectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenProjectToolStripMenuItem.Click
+        Timer.Stop()
         Dim dia As New OpenFileDialog With {
             .Title = "Save As",
             .DefaultExt = "dpak",
@@ -293,6 +302,8 @@
             Engine.OpenProject(dia.FileName)
             LastSaveLocation = dia.FileName
         End If
+        AutoSave(False)
+        Timer.Start()
     End Sub
 
     Private Sub AnimationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AnimationToolStripMenuItem.Click

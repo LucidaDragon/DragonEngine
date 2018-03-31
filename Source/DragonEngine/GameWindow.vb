@@ -1,4 +1,33 @@
 ﻿Public Class GameWindow
+    Public CurrentWorld As World
+    Public LoadedObjects As New List(Of ITickable)
+
+    Public Overloads Sub LoadLevel(name As String)
+        Try
+            CurrentWorld = ObjectLookupTable.GetItem(Of World)(name)
+            LoadedObjects.Clear()
+            Engine.Collision.StaticCollision.Clear()
+            Engine.Collision.DynamicCollision.Clear()
+
+            LoadedObjects.Add(CameraControls.Instance)
+            For Each obj In CurrentWorld.RealGameObjects
+                LoadedObjects.Add(obj)
+            Next
+
+            For Each rect In CurrentWorld.Collision
+                Engine.Collision.StaticCollision.Add(rect)
+            Next
+
+            For Each obj In LoadedObjects
+                If TryCast(obj, ICollision) IsNot Nothing Then
+                    Engine.Collision.DynamicCollision.Add(TryCast(obj, ICollision))
+                End If
+            Next
+        Catch ex As IO.FileNotFoundException
+            MsgBox("Error while loading level """ & name & """: " & ex.Message)
+        End Try
+    End Sub
+
     Private Sub GameWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If GameProperties.Instance.GameIcon IsNot Nothing Then
             Icon = Icon.FromHandle(ObjectLookupTable.GetItem(Of Image)(GameProperties.Instance.GameIcon).SelectedImage.GetHicon())
@@ -7,6 +36,12 @@
         Text = GameProperties.Instance.GameName
 
         InheritWindowState()
+
+        If GameProperties.Instance.DeafultLevel IsNot Nothing Then
+            LoadLevel(GameProperties.Instance.DeafultLevel)
+        End If
+
+        Keyboard.SourceForm = Me
     End Sub
 
     Private Sub InheritWindowState()
@@ -26,7 +61,12 @@
     End Sub
 
     Private Sub GameWindow_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
-        Engine.Graphics.Draw(e.Graphics, New Rectangle(New Point(Size.Width / -2, Size.Height / -2), Size))
+        If CurrentWorld IsNot Nothing Then
+            If CurrentWorld.GetCurrentImage() IsNot Nothing Then
+                e.Graphics.DrawImage(CurrentWorld.GetCurrentImage(), New Point(CameraControls.Instance.Position.X, CameraControls.Instance.Position.Y))
+            End If
+            Engine.Graphics.Draw(e.Graphics, New Rectangle(New Point(Size.Width / -2, Size.Height / -2), Size))
+        End If
     End Sub
 
     Private Sub GameWindow_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown

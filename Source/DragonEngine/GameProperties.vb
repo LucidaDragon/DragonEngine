@@ -14,6 +14,8 @@
 
     Public Property WindowSize As New Size(600, 800)
 
+    Public Property DeafultLevel As String
+
     Public Property ViewportStyle As ViewportType = 0
     Public Enum ViewportType
         Window = 0

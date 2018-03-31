@@ -1,6 +1,4 @@
-﻿Imports DragonEngine
-
-Public Class World
+﻿Public Class World
     Implements IListIcon
     Implements ISerialize
     Implements ISpecialEditObject
@@ -104,6 +102,22 @@ Public Class World
     Public Class Rectangle
         Public Property Location As New Point(0, 0)
         Public Property Size As New Size(1, 1)
+
+        Sub New()
+        End Sub
+
+        Sub New(location As Point, size As Size)
+            Me.Location = location
+            Me.Size = size
+        End Sub
+
+        Public Shared Widening Operator CType(obj As Rectangle) As Drawing.Rectangle
+            Return New Drawing.Rectangle(obj.Location, obj.Size)
+        End Operator
+
+        Public Shared Widening Operator CType(obj As Drawing.Rectangle) As Rectangle
+            Return New Rectangle(obj.Location, obj.Size)
+        End Operator
     End Class
 
     Public Class GameObjectList
@@ -131,7 +145,11 @@ Public Class World
         End Property
 
         Public Function GetEnumerator() As IEnumerator(Of GameObject) Implements IEnumerable(Of GameObject).GetEnumerator
-            Throw New NotImplementedException()
+            Dim result As New List(Of GameObject)
+            For Each elem In Source
+                result.Add(ObjectLookupTable.GetItem(Of GameObject)(elem))
+            Next
+            Return result.GetEnumerator()
         End Function
 
         Private Function IEnumerable_GetEnumerator() As IEnumerator Implements IEnumerable.GetEnumerator

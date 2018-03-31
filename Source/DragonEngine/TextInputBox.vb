@@ -22,4 +22,11 @@
     Private Sub CancelSubmitButton_Click(sender As Object, e As EventArgs) Handles CancelSubmitButton.Click
         DialogResult = DialogResult.Cancel
     End Sub
+
+    Private Sub InputTextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles InputTextBox.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Text = InputTextBox.Text
+            DialogResult = DialogResult.OK
+        End If
+    End Sub
 End Class

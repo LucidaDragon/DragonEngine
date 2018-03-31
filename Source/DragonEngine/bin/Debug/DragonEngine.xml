@@ -130,6 +130,13 @@ DragonEngine
  <param name="path">The file to load from.</param>
  <returns>The loaded ISerialize object.</returns>
 </member>
+<member name="M:DragonEngine.JsonData.ObjectFromDisk(System.String)">
+ <summary>
+ Get a serialized ISerialize object from a file.
+ </summary>
+ <param name="path">The file to read from.</param>
+ <returns>The ISerialize object.</returns>
+</member>
 <member name="M:DragonEngine.JsonData.WriteToFile``1(System.Object,System.String)">
  <summary>
  Saves an object in memory to disk for later use.

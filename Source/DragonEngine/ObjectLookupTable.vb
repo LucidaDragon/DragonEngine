@@ -40,6 +40,9 @@
     End Function
 
     Public Shared Function GetItem(Of T)(name As String) As T
+        If name Is Nothing Then
+            Return Nothing
+        End If
         For Each elem In Objects
             If elem.Name = name Then
                 Try

@@ -26,5 +26,4 @@ C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debu
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.pdb
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.TextInputBox.resources
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.AnimationDisplay.resources
-C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbprojResolveAssemblyReference.cache
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.WorldDisplay.resources
