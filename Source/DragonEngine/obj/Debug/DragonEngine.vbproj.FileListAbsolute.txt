@@ -29,3 +29,7 @@ C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debu
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.WorldDisplay.resources
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.vbprojResolveAssemblyReference.cache
 C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.LogWindow.resources
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.exe.manifest
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\bin\Debug\DragonEngine.application
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.exe.manifest
+C:\Users\LucidaDragon\Documents\GitHub\DragonEngine\Source\DragonEngine\obj\Debug\DragonEngine.application
