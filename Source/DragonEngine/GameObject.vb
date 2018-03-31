@@ -5,13 +5,6 @@
     Public Property DrawData As New List(Of Engine.Graphics.DrawCall)
 
     Public Property Name As String Implements INamedObject.Name
-        Get
-            Throw New NotImplementedException()
-        End Get
-        Set(value As String)
-            Throw New NotImplementedException()
-        End Set
-    End Property
 
     Public Overridable Sub ToDisk(path As String) Implements ISerialize.ToDisk
         JsonData.WriteToFile(Of GameObject)(Me, path)

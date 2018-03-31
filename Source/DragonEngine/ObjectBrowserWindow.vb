@@ -348,6 +348,7 @@
 
     Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
         Enabled = False
+        Engine.IsDebugMode = True
         AddHandler Domain.UnhandledException, AddressOf Engine_UnhandledException
         GameWindow.Show()
         AddHandler GameWindow.FormClosed, AddressOf GameWindow_Closed
@@ -356,11 +357,13 @@
     Private Sub Engine_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs)
         LogWindow.Log("An error occured while the game was running:" & Environment.NewLine & TryCast(e.ExceptionObject, Exception).Message)
         GameWindow.Close()
+        Engine.IsDebugMode = False
         LogWindow.Show()
     End Sub
 
     Private Sub GameWindow_Closed(sender As Object, e As FormClosedEventArgs)
         Enabled = True
+        Engine.IsDebugMode = False
         RemoveHandler GameWindow.FormClosed, AddressOf GameWindow_Closed
         RemoveHandler Domain.UnhandledException, AddressOf Engine_UnhandledException
     End Sub

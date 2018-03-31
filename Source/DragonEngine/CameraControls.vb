@@ -3,7 +3,7 @@
     Implements ITickable
     Implements IListIcon
 
-    Public Property Position As Point
+    Public Property Position As PointF
     Public Property Speed As Double
     Public Property UpTriggers As New List(Of Trigger)
     Public Property DownTriggers As New List(Of Trigger)
@@ -37,28 +37,28 @@
     Public Sub Tick() Implements ITickable.Tick
         For Each elem In UpTriggers
             If elem.GetTrigger() Then
-                Position.Offset(0, -Speed)
+                Position = New PointF(Position.X, Position.Y - Speed)
                 Exit For
             End If
         Next
 
         For Each elem In DownTriggers
             If elem.GetTrigger() Then
-                Position.Offset(0, Speed)
+                Position = New PointF(Position.X, Position.Y + Speed)
                 Exit For
             End If
         Next
 
         For Each elem In LeftTriggers
             If elem.GetTrigger() Then
-                Position.Offset(-Speed, 0)
+                Position = New PointF(Position.X - Speed, Position.Y)
                 Exit For
             End If
         Next
 
         For Each elem In RightTriggers
             If elem.GetTrigger() Then
-                Position.Offset(Speed, 0)
+                Position = New PointF(Position.X + Speed, Position.Y)
                 Exit For
             End If
         Next

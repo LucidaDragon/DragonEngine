@@ -26,4 +26,16 @@
             Next
         End If
     End Sub
+
+    Private Sub LogWindow_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        ShowInTaskbar = True
+    End Sub
+
+    Private Sub LogWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If e.CloseReason = CloseReason.UserClosing Then
+            e.Cancel = True
+            ShowInTaskbar = False
+            Hide()
+        End If
+    End Sub
 End Class

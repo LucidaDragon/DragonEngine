@@ -10,6 +10,11 @@
     Public Shared Package As Package
 
     ''' <summary>
+    ''' Whether this game is running in the editor sandbox.
+    ''' </summary>
+    Public Shared IsDebugMode As Boolean = False
+
+    ''' <summary>
     ''' Find a specified type via a string name.
     ''' </summary>
     ''' <param name="name">The type name to search for.</param>
@@ -114,7 +119,7 @@
 
         Public Shared Sub Draw(g As Drawing.Graphics, bounds As Rectangle)
             For Each drawCall In DrawCalls
-                g.DrawImage(drawCall.Sprite, CameraControls.Instance.Position.X - drawCall.Location.X, CameraControls.Instance.Position.Y - drawCall.Location.Y, drawCall.Size.Width, drawCall.Size.Height)
+                g.DrawImage(drawCall.Sprite, drawCall.Location.X - CameraControls.Instance.Position.X, drawCall.Location.Y - CameraControls.Instance.Position.Y - drawCall.Location.Y, drawCall.Size.Width, drawCall.Size.Height)
             Next
         End Sub
 

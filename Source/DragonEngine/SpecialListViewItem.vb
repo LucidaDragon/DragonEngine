@@ -1,6 +1,8 @@
 ﻿Public Class SpecialListViewItem
     Inherits ListViewItem
 
+    Private LastKnownText As String = String.Empty
+
     Sub New()
         MyBase.New()
     End Sub
@@ -17,7 +19,14 @@
         End If
 
         If obj IsNot Nothing Then
-            Text = obj.Name
+            If (Not LastKnownText = Text) And (Not LastKnownText = String.Empty) Then
+                obj.Name = Text
+            Else
+                Text = obj.Name
+            End If
+            LastKnownText = Text
         End If
+
+        ToolTipText = Tag.GetType().Name
     End Sub
 End Class

@@ -2,6 +2,18 @@
     Private Shared Messages As New List(Of Message)
     Private Shared Hooks As New List(Of Hook)
 
+    Public Shared Function QueryMessage(message As String, consumeMessage As Boolean) As Boolean
+        For i As Integer = 0 To Messages.Count - 1
+            If Messages.Item(i).Data = message Then
+                If consumeMessage Then
+                    Messages.RemoveAt(i)
+                End If
+                Return True
+            End If
+        Next
+        Return False
+    End Function
+
     Public Shared Function AddHook(message As String, method As System.Action, consumeMessage As Boolean) As Integer
         Dim hook As New Hook(message, method, consumeMessage)
         Hooks.Add(hook)

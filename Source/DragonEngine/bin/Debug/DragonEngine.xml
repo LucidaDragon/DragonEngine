@@ -79,6 +79,11 @@ DragonEngine
  The currently loaded package.
  </summary>
 </member>
+<member name="F:DragonEngine.Engine.IsDebugMode">
+ <summary>
+ Whether this game is running in the editor sandbox.
+ </summary>
+</member>
 <member name="M:DragonEngine.Engine.FindType(System.String)">
  <summary>
  Find a specified type via a string name.

@@ -37,6 +37,7 @@ Partial Class GameWindow
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(854, 454)
+        Me.DoubleBuffered = True
         Me.ForeColor = System.Drawing.Color.White
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GameWindow"

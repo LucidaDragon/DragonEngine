@@ -26,9 +26,9 @@ Partial Class LogWindow
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LogWindow))
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopySelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,6 +52,12 @@ Partial Class LogWindow
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(174, 76)
         '
+        'CopyAllToolStripMenuItem
+        '
+        Me.CopyAllToolStripMenuItem.Name = "CopyAllToolStripMenuItem"
+        Me.CopyAllToolStripMenuItem.Size = New System.Drawing.Size(173, 24)
+        Me.CopyAllToolStripMenuItem.Text = "Copy All"
+        '
         'CopySelectedToolStripMenuItem
         '
         Me.CopySelectedToolStripMenuItem.Name = "CopySelectedToolStripMenuItem"
@@ -63,12 +69,6 @@ Partial Class LogWindow
         Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
         Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(173, 24)
         Me.RemoveToolStripMenuItem.Text = "Remove"
-        '
-        'CopyAllToolStripMenuItem
-        '
-        Me.CopyAllToolStripMenuItem.Name = "CopyAllToolStripMenuItem"
-        Me.CopyAllToolStripMenuItem.Size = New System.Drawing.Size(173, 24)
-        Me.CopyAllToolStripMenuItem.Text = "Copy All"
         '
         'LogWindow
         '
